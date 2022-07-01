@@ -1,3 +1,11 @@
+# GotGongBackEnd
+같공(같이 공부할래?) FrontEnd 서버입니다
+
+### 초기 세팅
+```
+yarn add axios // axios 설치
+```
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
