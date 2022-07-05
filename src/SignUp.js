@@ -2,16 +2,37 @@ import React, { useState } from "react";
 import axios from "axios";
 
 function SignUp() {
-  const [name, setName] = useState("");
-  const [id, setId] = useState("");
+  // 수정 - 진혁
+  // userid, password, username, email
+  const [userid, setUserid] = useState("");
   const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+
+  const useridHandler = (e) => {
+    setUserid(e.target.value);
+  };
+  const passwordHandler = (e) => {
+    setPassword(e.target.value);
+  };
+  const usernameHandler = (e) => {
+    setUsername(e.target.value);
+  };
+  const emailHandler = (e) => {
+    setEmail(e.target.value);
+  }
+  const confirmPasswordHandler = (e) => {
+    setConfirmPassword(e.target.value);
+  };
 
   const post = () => {
     axios
       .post("http://localhost:8000/user/signup/", {
-        userid: id,
+        userid: userid,
         password: password,
+        username: username,
+        email: email,
       })
       .then((response) => {
         console.log(response.data);
@@ -41,19 +62,6 @@ function SignUp() {
       });
   };
 
-  const nameHandler = (e) => {
-    setName(e.target.value);
-  };
-  const idHandler = (e) => {
-    setId(e.target.value);
-  };
-  const passwordHandler = (e) => {
-    setPassword(e.target.value);
-  };
-  const confirmPasswordHandler = (e) => {
-    setConfirmPassword(e.target.value);
-  };
-
   const submit = (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
@@ -66,27 +74,18 @@ function SignUp() {
       <form>
         <div>
           <input
-            name="name"
+            name="userid"
             type="text"
-            placeholder="이름"
-            value={name}
-            onChange={nameHandler}
-          />
-        </div>
-        <div>
-          <input
-            name="id"
-            type="id"
-            placeholder="아이디"
-            value={id}
-            onChange={idHandler}
+            placeholder="userid"
+            value={userid}
+            onChange={useridHandler}
           />
         </div>
         <div>
           <input
             name="password"
             type="password"
-            placeholder="비밀번호"
+            placeholder="password"
             value={password}
             onChange={passwordHandler}
           />
@@ -98,6 +97,24 @@ function SignUp() {
             placeholder="비밀번호 확인"
             value={confirmPassword}
             onChange={confirmPasswordHandler}
+          />
+        </div>
+        <div>
+          <input
+            name="username"
+            type="text"
+            placeholder="username"
+            value={username}
+            onChange={usernameHandler}
+          />
+        </div>
+        <div>
+          <input
+            name="email"
+            type="text"
+            placeholder="email"
+            value={email}
+            onChange={emailHandler}
           />
         </div>
       </form>
