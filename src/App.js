@@ -1,24 +1,15 @@
-import React from "react";
-import { Route, Routes, useNavigate } from "react-router-dom";
-//import Navbar from "./Navbar";
-import SignUp from "./SignUp";
-import Login from "./Login";
-import Home from "./Home";
-import Menubar from "./Menubar";
+import React, { useState } from "react";
+import "./App.css"
+import NavBar from "./NavBar";
 import Router from "./Router";
 
 const App = () => {
+  const [token, setToken] = useState('');
+
   return (
-    <div>
-      <Router />
-      {/* <SignUp></SignUp> */}
-      {/* <Routes>
-        <Route path="/" element={Menubar}>
-          <Route path="/home" element={Home} />
-          <Route path="/sign-up" element={SignUp} />
-          <Route path="/login" element={Login} />
-        </Route>
-      </Routes> */}
+    <div className="AppContainer">
+      <NavBar token={token} setToken={setToken}/>
+      <Router token={token} setToken={setToken}/>
     </div>
   );
 };
