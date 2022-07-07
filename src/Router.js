@@ -1,20 +1,21 @@
 import React from "react";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 //import Navbar from "./Navbar";
-import SignUp from "./SignUp";
-import Login from "./Login";
-import Home from "./Home";
-import Menubar from "./Menubar";
+import HomePage from "./Page/HomePage";
+import SignInPage from "./Page/SignInPage";
+import SignUpPage from "./Page/SignUpPage";
+import SettingPage from "./Page/SettingPage";
 
-const Router = () => {
+const Router = ({token, setToken}) => {
+
   return (
     <Routes>
-      <Route path="/" element={<Menubar />}>
-        <Route path="/home" element={<Home />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/login" element={<Login />} />
-      </Route>
+      <Route path="/" element={<HomePage/>}/>
+      <Route path="/signup" element={<SignUpPage setToken={setToken}/>}/>
+      <Route path="/signin" element={<SignInPage setToken={setToken}/>}/>
+      <Route path="/setting" element={<SettingPage token={token} setToken={setToken}/>}/>
     </Routes>
   );
 };
+
 export default Router;
