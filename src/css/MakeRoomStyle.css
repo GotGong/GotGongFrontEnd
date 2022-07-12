@@ -1,0 +1,28 @@
+
+.field  {
+    background:#fff;
+    border:1px solid #222;
+    border-radius: 5px;
+    padding: 20px;
+    width: 400px;	
+    margin:30px auto;
+}
+
+#form ul li  {
+    line-height: 30px;
+    list-style: none;
+    padding: 5px 10px;
+    margin-bottom: 2px;
+}
+#form li  {
+    margin-top: 10px;
+}
+
+.mkRoomButton {
+    border: 1px solid #222;
+      border-radius: 20px;
+      display: block;
+      letter-spacing: 1px;
+      margin: auto;
+      padding: 7px 25px;
+}

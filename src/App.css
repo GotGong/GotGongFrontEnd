@@ -4,10 +4,26 @@ body {
 
 .NavBarContainer {
   background-color: tomato;
-  position: fixed;
+  /* position: fixed; */
   width: 100%;
-  height: 100px;
+  height: 50px;
   z-index: 2;
+}
+
+.NavBarContainer ul{
+  list-style: none;
+  padding-top: 5px;
+}
+
+.NavBarContainer ul li {
+  float: left;
+  width: 100px;
+  padding: 10px;
+}
+
+.RoomPageContainer ul  {
+  list-style: none;
+
 }
 
 .PageContainer {
@@ -15,5 +31,5 @@ body {
   position: fixed;
   width: 100%;
   height: 100%;
-  margin-top: 100px;
+  margin-top: 10px;
 }

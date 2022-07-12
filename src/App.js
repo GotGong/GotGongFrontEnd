@@ -7,9 +7,11 @@ const App = () => {
   const [token, setToken] = useState('');
 
   return (
-    <div className="AppContainer">
-      <NavBar token={token} setToken={setToken}/>
-      <Router token={token} setToken={setToken}/>
+    <div>
+      <div className="AppContainer">
+        <NavBar token={token} setToken={setToken}/>
+        <Router token={token} setToken={setToken}/>
+      </div>
     </div>
   );
 };

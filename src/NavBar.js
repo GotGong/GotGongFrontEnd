@@ -20,7 +20,9 @@ const NavBar = ({token, setToken}) => {
       </div>
       <ul>
         <li>
-          <Link to="/">Home</Link>
+          <Link to="/">
+            <button>홈</button>
+          </Link>
         </li>
         {signInOn ?
           <li>
