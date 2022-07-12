@@ -8,7 +8,8 @@ function SignUpPage({setToken}) {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [passwordToConfirm, setPasswordToConfirm] = useState('');
-
+  const isValidEmail =  email.includes('@') && email.includes('.');
+  const isValidPassword  = password.length  >= 8;
   // 회원가입 버튼 클릭
   const signUp = () => {
     // signUpAPI 실행
@@ -32,12 +33,19 @@ function SignUpPage({setToken}) {
     else if (email === ''){
       alert('이메일은 필수항목입니다.');
     }
+    else if (!isValidEmail) {
+      alert('이메일 입력양식이 틀렸습니다.');
+    }
+    else if (!isValidPassword) {
+      alert('비밀번호는 8글자 이상으로 설정하십시오.');
+    }
     else {
       signUpAPI(userid, password, username, email)
       .then((response) => {
         if (response !== '') {
           setToken(response);
           alert('회원가입 성공!!!');
+          console.log(response.data);
           setUserid('');
           setPassword('');
           setPasswordToConfirm('');

@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect,  Redirect } from "react";
 import signInAPI from "../API/signInAPI";
+import { Link, useNavigate } from "react-router-dom";
+import RoomHomePage from "./RoomHomePage";
 
-function SignInPage({setToken}) {
+function SignInPage({token, setToken}) {
   
   const [userid, setUserid] = useState('');
   const [password, setPassword] = useState('');
+
+  const navigate = useNavigate()
 
   const useridHandler = (e) => {
     setUserid(e.target.value);
@@ -16,7 +20,7 @@ function SignInPage({setToken}) {
   // 로그인 버튼 클릭
   const signIn = () => {
     // signUpAPI 실행
-    // input: userid, password, username, email
+    // input: userid, (password, username, email
     // return: 성공 시, Token 값(문자열), 실패 시, ''
     signInAPI(userid, password)
     .then((response) => {
@@ -24,6 +28,7 @@ function SignInPage({setToken}) {
         setToken(response);
         setUserid('');
         setPassword('');
+        navigate('/room');
       }
       else {
         alert('로그인 실패!!!');
@@ -32,6 +37,18 @@ function SignInPage({setToken}) {
       }
     })
   }
+
+  //로그인 상태 관리
+  const [isLogin, setIsLogin] = useState(false);
+  useEffect(() => {
+  if(token === ''){
+      console.log('로그인 후 사용가능합니다.');
+  }
+  else{
+      setIsLogin(true);
+      console.log('로그인 상태');
+  }
+    }, [token]);
 
   return (
     <div className="PageContainer">
@@ -59,6 +76,13 @@ function SignInPage({setToken}) {
           로그인
         </button>
       </div>
+      {/* <div>
+      {isLogin ? 
+      <Link to="/room"  />
+      :
+      <>
+      </>}
+      </div> */}
     </div>
   );
 }
