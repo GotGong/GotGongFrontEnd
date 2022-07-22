@@ -1,6 +1,6 @@
 import React, { useState, useEffect,  Redirect } from "react";
 import signInAPI from "../API/signInAPI";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useNavigate } from "react-router-dom";
 import RoomHomePage from "./RoomHomePage";
 
 function SignInPage({token, setToken}) {
@@ -16,6 +16,8 @@ function SignInPage({token, setToken}) {
   const passwordHandler = (e) => {
     setPassword(e.target.value);
   };
+
+  
 
   // 로그인 버튼 클릭
   const signIn = () => {

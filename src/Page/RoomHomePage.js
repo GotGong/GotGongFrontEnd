@@ -1,9 +1,20 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
+import MyRoomListAPI from '../API/myRoomListAPI';
 
-function RoomHomePage(props) {
+
+function RoomHomePage(props, token) {
     const isLogin = props.isLogin;
 
+    const showRoomList= () => {
+        MyRoomListAPI(token)
+        .then(() => {
+          console.log('aaa');
+        })
+      }
+
+    
     return (
         <div>
             <h1>RoomHomePage입니다.</h1>
@@ -24,7 +35,7 @@ function RoomHomePage(props) {
                     <li>
                         <Link to="/enterbycode">
                             <button>
-                            코드로 새로운 방 참여하기
+                            참여하기
                             </button>
                         </Link>
                     </li>
@@ -33,9 +44,11 @@ function RoomHomePage(props) {
             <div>
                 <ul>
                     <li>
+                        <h4>내가 속한 방 리스트가 뜰 예정</h4>
+                        <h4>{showRoomList}</h4>
                         <Link to="/enter">
                             <button>
-                            방 들어가기
+                            스터디방 0
                             </button>
                         </Link>
                     </li>
