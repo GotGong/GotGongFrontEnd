@@ -16,6 +16,7 @@ const makeRoomAPI = async (title, targetTime, startTime,
   })
   .then((response) => {
     token = response.data.Token;
+    console.log(response);
   })
   .catch(function (error) {
     console.log(error);
