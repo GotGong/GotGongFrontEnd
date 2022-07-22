@@ -1,5 +1,7 @@
 body {
-  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .NavBarContainer {
@@ -19,11 +21,6 @@ body {
   float: left;
   width: 100px;
   padding: 10px;
-}
-
-.RoomPageContainer ul  {
-  list-style: none;
-
 }
 
 .PageContainer {

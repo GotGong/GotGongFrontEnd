@@ -1,0 +1,21 @@
+.SignInContainer {
+    margin:0 auto;
+}
+
+.SignInTop {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.SignInBottom ul  {
+    list-style: none;
+
+  }
+
+.SignInBottom ul li  {
+    float: left;
+    width: 100px;
+    padding: 10px;
+  }

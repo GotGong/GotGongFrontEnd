@@ -1,4 +1,5 @@
 import React from 'react';
+import "../css/RoomHomeStyle.css";
 import { Link } from "react-router-dom";
 
 function RoomHomePage(props) {

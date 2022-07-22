@@ -1,7 +1,8 @@
-import React, { useState, useEffect,  Redirect } from "react";
+//로그인 + 메인 페이지
+import React, { useState, useEffect } from "react";
 import signInAPI from "../API/signInAPI";
+import "../css/SignInStyle.css";
 import { Link, useNavigate } from "react-router-dom";
-import RoomHomePage from "./RoomHomePage";
 
 function SignInPage({token, setToken}) {
   
@@ -51,38 +52,48 @@ function SignInPage({token, setToken}) {
     }, [token]);
 
   return (
-    <div className="PageContainer">
-      <h1>SignInPage입니다.</h1>
-      <div>
+    <div className="SignInContainer">
+      <div className="SignInTop">
         <input
           name="userid"
           type="text"
-          placeholder="userid"
+          placeholder="아이디"
           value={userid}
           onChange={useridHandler}
         />
-      </div>
-      <div>
         <input
           name="password"
           type="password"
-          placeholder="password"
+          placeholder="비밀번호"
           value={password}
           onChange={passwordHandler}
         />
-      </div>
+
       <div>
         <button className="signInButton" onClick={signIn}>
           로그인
         </button>
       </div>
-      {/* <div>
-      {isLogin ? 
-      <Link to="/room"  />
-      :
-      <>
-      </>}
-      </div> */}
+      </div>
+      <div className="SignInBottom">
+        <ul>
+          <li>
+            <Link to="/signup">
+              <span>회원가입</span>
+            </Link>
+          </li>
+          <li>
+            <Link to="/">
+              <span>아이디찾기</span>
+            </Link>
+          </li>
+          <li>
+            <Link to="/">
+              <span>비밀번호찾기</span>
+            </Link>
+          </li>
+        </ul>
+      </div>
     </div>
   );
 }
