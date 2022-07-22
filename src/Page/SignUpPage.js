@@ -80,18 +80,41 @@ function SignUpPage({setToken}) {
       <h1>SignUpPage입니다.</h1>
       <div>
         <input
+          name="email"
+          type="text"
+          placeholder="이메일"
+          value={email}
+          onChange={emailHandler}
+        />
+      </div>
+      <div>
+        <input
+          name="username"
+          type="text"
+          placeholder="이름"
+          value={username}
+          onChange={usernameHandler}
+        />
+      </div>
+      <div>
+        <input
           name="userid"
           type="text"
-          placeholder="userid"
+          placeholder="아이디"
           value={userid}
           onChange={useridHandler}
         />
       </div>
       <div>
+        <button className="duplicationCheckButton" onClick>
+          중복확인
+        </button>
+      </div>
+      <div>
         <input
           name="password"
           type="password"
-          placeholder="password"
+          placeholder="비밀번호"
           value={password}
           onChange={passwordHandler}
         />
@@ -100,32 +123,16 @@ function SignUpPage({setToken}) {
         <input
           name="passwordToConfirm"
           type="password"
-          placeholder="비밀번호 확인"
+          placeholder="비밀번호 재확인"
           value={passwordToConfirm}
           onChange={passwordToConfirmHandler}
         />
       </div>
-      <div>
-        <input
-          name="username"
-          type="text"
-          placeholder="username"
-          value={username}
-          onChange={usernameHandler}
-        />
-      </div>
-      <div>
-        <input
-          name="email"
-          type="text"
-          placeholder="email"
-          value={email}
-          onChange={emailHandler}
-        />
-      </div>
+      
+      
       <div>
         <button className="signUpButton" onClick={signUp}>
-          회원가입
+          가입하기
         </button>
       </div>
     </div>

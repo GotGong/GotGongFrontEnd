@@ -1,5 +1,6 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import "../css/RoomHomeStyle.css";
+
 import { Link } from "react-router-dom";
 import MyRoomListAPI from '../API/myRoomListAPI';
 
