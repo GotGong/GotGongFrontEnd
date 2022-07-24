@@ -4,7 +4,6 @@ import signInAPI from "../API/signInAPI";
 import "../css/SignInStyle.css";
 import { Link, useNavigate } from "react-router-dom";
 
-
 function SignInPage({token, setToken}) {
   
   const [userid, setUserid] = useState('');
@@ -18,8 +17,6 @@ function SignInPage({token, setToken}) {
   const passwordHandler = (e) => {
     setPassword(e.target.value);
   };
-
-  
 
   // 로그인 버튼 클릭
   const signIn = () => {
