@@ -22,8 +22,8 @@ const Router = ({ token, setToken }) => {
         path="/setting"
         element={<SettingPage token={token} setToken={setToken} />}
       />
-      <Route path="/room" element={<RoomHomePage setToken={setToken} />} />
-      <Route path="/mkroom" element={<MakeRoomPage setToken={setToken} />} />
+      <Route path="/room" element={<RoomHomePage token={token} />} />
+      <Route path="/mkroom" element={<MakeRoomPage token={token} />} />
       <Route
         path="/enterbycode"
         element={<RoomCodeEnterPage token={token} setToken={setToken} />}

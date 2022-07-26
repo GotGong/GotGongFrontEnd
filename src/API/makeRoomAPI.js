@@ -1,26 +1,25 @@
 import axios from "axios";
+import { useState } from "react";
 
-const makeRoomAPI = async (title, targetTime, startTime, 
-    planHalfFee, planNoFee, maxUserNum, 
-    planPeriod, negativePercent) => {
-  let token = ''
-  await axios.post("http://localhost:8000/room/", {
-    title: title,
-    target_time: targetTime,
-    start_time: startTime,
-    plan_half_fee: planHalfFee,
-    plan_no_fee: planNoFee,
-    max_user_num: maxUserNum,
-    plan_period: planPeriod,
-    negative_percent: negativePercent,
-  })
-  .then((response) => {
-    token = response.data.Token;
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-  return token;
-}
+  
+
+const makeRoomAPI = async (title, targetTime, maxUserNum, ruleNum ) => {
+  await axios.post("http://localhost:8000/room/", 
+    {params: {
+          title: title,
+          target_time: targetTime,
+          max_user_num: maxUserNum,
+          rule_num: ruleNum
+    }})
+    .then((response) => {
+        console.log(response);
+        console.log('makeroom');
+    })
+    .catch(function (error) {
+        console.log(error);
+        console.error(error.response.data); 
+        console.log('makeroom에러?');
+    });
+  }
 
 export default makeRoomAPI;
