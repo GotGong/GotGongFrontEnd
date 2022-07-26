@@ -6,9 +6,9 @@ import SettingPage from "./Page/SettingPage";
 import RoomHomePage from "./Page/RoomHomePage";
 import MakeRoomPage from "./Page/MakeRoomPage";
 import RoomCodeEnterPage from "./Page/RoomCodeEnterPage";
-import RoomEnterPage from "./Page/RoomEnterPage";
 import RoomRulePage from "./Page/RoomRulePage";
 import RoomMainPage from "./Page/RoomMainPage";
+import ShowPlanPage from './Page/ShowPlanPage';
 
 const Router = ({ token, setToken }) => {
   return (
@@ -29,10 +29,6 @@ const Router = ({ token, setToken }) => {
         element={<RoomCodeEnterPage token={token} setToken={setToken} />}
       />
       <Route
-        path="/enter"
-        element={<RoomEnterPage token={token} setToken={setToken} />}
-      />
-      <Route
         path="/rule"
         element={<RoomRulePage token={token} setToken={setToken} />}
       />
@@ -40,6 +36,10 @@ const Router = ({ token, setToken }) => {
         path="/myrooms"
         element={<RoomMainPage token={token} setToken={setToken} />}
       />
+      <Route
+        path="/myplan"
+        element={<ShowPlanPage token={token} setToken={setToken} />}
+        />
     </Routes>
   );
 };

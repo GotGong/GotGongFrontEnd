@@ -9,11 +9,12 @@ function RoomCodeEnterPage({token, setToken}) {
     const codeEnter = () =>  {
         roomCodeEnterAPI(room_code)
         .then((response)=> {
-            if (response  !== ''){
+            if (response !==  ''){
                 setToken(response);
                 setRoom_code('');
                 navigate('/myrooms')
             }
+            
             else{
                 alert('해당 코드가 존재하지 않습니다.');
             }
@@ -30,10 +31,8 @@ function RoomCodeEnterPage({token, setToken}) {
                     name="roomcode"
                     type="text"
                     placeholder="참여코드"
-                    value={room_code}
-                    
                     />
-                    <button onChange={codeEnter}>
+                    <button onClick={codeEnter}>
                         참여하기
                     </button>
                 </div>

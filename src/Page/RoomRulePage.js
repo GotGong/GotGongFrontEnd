@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import changeRoomnameAPI from "../API/changeRoomnameAPI";
 
-const RoomRulePage = (token, room_id) => {
+function RoomRulePage(token, room_id) {
   const [title, setTitle] = useState("");
   const roomnameHandler = (e) => {
     setTitle(e.target.value);
@@ -22,6 +22,11 @@ const RoomRulePage = (token, room_id) => {
   const [R1, setR1] = useState("");
   const changeR1 = (e) => {
     setR1(e.target.value);
+  };
+
+  const [R2, setR2] = useState("");
+  const changeR2 = (e) => {
+    setR2(e.target.value);
   };
 
   return (
@@ -47,7 +52,7 @@ const RoomRulePage = (token, room_id) => {
         </label>
         <br></br>
         <label>
-          <input type="radio" value="2" onChange={changeR1} />
+          <input type="radio" value="2" onChange={changeR2} />
           1등: 200%, 2~4등:80%, 5등:60% 환급
         </label>
       </div>
