@@ -1,21 +1,10 @@
 import React from 'react';
 import "../css/RoomHomeStyle.css";
-
 import { Link } from "react-router-dom";
-import MyRoomListAPI from '../API/myRoomListAPI';
 
-
-function RoomHomePage(props, token) {
+function RoomHomePage(props) {
     const isLogin = props.isLogin;
 
-    const showRoomList= () => {
-        MyRoomListAPI(token)
-        .then(() => {
-          console.log('aaa');
-        })
-      }
-
-    
     return (
         <div>
             <h1>RoomHomePage입니다.</h1>
@@ -36,7 +25,7 @@ function RoomHomePage(props, token) {
                     <li>
                         <Link to="/enterbycode">
                             <button>
-                            참여하기
+                            코드로 새로운 방 참여하기
                             </button>
                         </Link>
                     </li>
@@ -45,11 +34,9 @@ function RoomHomePage(props, token) {
             <div>
                 <ul>
                     <li>
-                        <h4>내가 속한 방 리스트가 뜰 예정</h4>
-                        <h4>{showRoomList}</h4>
                         <Link to="/enter">
                             <button>
-                            스터디방 0
+                            방 들어가기
                             </button>
                         </Link>
                     </li>

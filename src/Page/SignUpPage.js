@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import signUpAPI from "../API/signUpAPI";
+import duplicationCheckAPI from "../API/duplicationCheckAPI";
+import { useNavigate } from 'react-router-dom';
 
 function SignUpPage({setToken}) {
 
@@ -8,8 +10,26 @@ function SignUpPage({setToken}) {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [passwordToConfirm, setPasswordToConfirm] = useState('');
+  const [usableId, setUsableId] = useState(false);
   const isValidEmail =  email.includes('@') && email.includes('.');
   const isValidPassword  = password.length  >= 8;
+  const navigate = useNavigate()
+
+  const duplicationCheck = () => {
+    duplicationCheckAPI(userid)
+    .then((response) => {
+        //if(response === false){
+        if(response !== ''){
+          alert('사용 가능한 아이디입니다.');
+          setUsableId(true);
+        }
+        else {
+          alert('중복된 아이디입니다. 다시 시도하세요.');
+          setUserid('');
+        }
+    })
+  }
+
   // 회원가입 버튼 클릭
   const signUp = () => {
     // signUpAPI 실행
@@ -39,6 +59,10 @@ function SignUpPage({setToken}) {
     else if (!isValidPassword) {
       alert('비밀번호는 8글자 이상으로 설정하십시오.');
     }
+    else if (setUsableId(false)){
+      alert('아이디 중복 확인을 하십시오.');
+    }
+    
     else {
       signUpAPI(userid, password, username, email)
       .then((response) => {
@@ -51,6 +75,7 @@ function SignUpPage({setToken}) {
           setPasswordToConfirm('');
           setUsername('');
           setEmail('');
+          navigate('/room');
         }
         else {
           alert('회원가입 실패!!! - 원인으로는 서버 문제 or 아이디 중복 등의 원인이 있을 수 있습니다.');
@@ -106,7 +131,7 @@ function SignUpPage({setToken}) {
         />
       </div>
       <div>
-        <button className="duplicationCheckButton" onClick>
+        <button className="duplicationCheckButton" onClick={duplicationCheck}>
           중복확인
         </button>
       </div>

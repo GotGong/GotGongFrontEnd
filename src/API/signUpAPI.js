@@ -19,16 +19,6 @@ const signUpAPI = async (userid, password, username, email) => {
   return token;
 }
 
-const idConfirm  = async (userid) => {
-  await axios.post("http://localhost:8000/user/signup/", {
-    userid: userid,
-  })
-  .then((response) => {
-    if(userid == response.data.userid){
-      alert("사용 불가능한 아이디입니다.");
-    }
-  })
-  
-}
+
 
 export default signUpAPI;
