@@ -3,11 +3,10 @@ import showPlanAPI from '../API/showPlanAPI';
 import showDetailPlanAPI from '../API/showDetailPlanAPI';
 
 function ShowPlanPage(token){
-    const [username,setUsername]=useState('');
     const [dislike_check,setDislike_check]=useState('');
     const [room_id,setRoom_id]=useState('');
     const [plan_id,setPlan_id]=useState('');
-
+    const username  = localStorage.getItem('username');
 
     showPlanAPI(token, room_id)
         .then((response) => {
