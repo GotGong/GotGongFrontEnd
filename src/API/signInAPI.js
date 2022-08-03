@@ -10,7 +10,7 @@ const signInAPI = async (userid, password) => {
   })
   .then((response) => {
     token = response.data.Token;
-    const username = response.data.user_name;
+    const username = response.data.username;
     localStorage.setItem("token",token);
     localStorage.setItem("username",username);
   })
