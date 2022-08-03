@@ -1,38 +1,75 @@
 import React, {useState } from 'react';
-import makeRoomAPI from '../API/makeRoomAPI';
-//import DatePicker from "react-datepicker";
-import {ko} from "date-fns/esm/locale";
+// import makeRoomAPI from '../API/makeRoomAPI';
 import 'react-datepicker/dist/react-datepicker.css';
 import MakeRoomStyle from '../css/MakeRoomStyle.css'
 import DatePicker from "react-datepicker";
+import axios from 'axios';
+import $ from 'jquery';
 
 
 function MakeRoomPage( {token} ) {
     const [title, setTitle] = useState('');
     const [targetTime, setTargetTime] = useState(new Date());
     const [maxUserNum, setMaxUserNum] = useState(0);
-    const [ruleNum, setRuleNum] = useState(0);
+    let [ruleNum, setRuleNum] = useState(0);
 
-    const [roomId, setRoomId] = useState(0);
-    const [roomCode, setRoomCode] = useState('');
+    let [roomId, setRoomId] = useState(0);
+    let [roomCode, setRoomCode] = useState('');
 
-    const makeRoom = () => {
-        makeRoomAPI(title, targetTime, maxUserNum,ruleNum)
-        .then((response)=> {
-            if (response !== '') {
+    const makeRoom = ()  => {
+        console.log('makeroom 함수 실행됐음');
+        console.log(title);
+        console.log(targetTime);
+        console.log(maxUserNum);
+        console.log(ruleNum);
+        axios.post("http://localhost:8000/room/", 
+          { 
+                title: title,
+                target_time: targetTime,
+                max_user_num: maxUserNum,
+                rule_num: ruleNum,
+          })
+          .then((response) => {
+              console.log(response);
+              console.log('makeroom');
+              if (response !== '') {
                 alert('방 만들기 성공');
                 setTitle('');
                 setMaxUserNum(0);
                 setRuleNum(0);  
-                setRoomId(response.data.room_id);
-                setRoomCode(response.data.room_code);
+                setRoomId(roomId = response.data.room_id);
+                setRoomCode(roomCode = response.data.room_code);
                 console.log(roomId);
                 console.log(roomCode);
             }
             else 
                 alert('방 만들기 실패');
-        });
-    }
+          })
+          .catch(function (error) {
+              console.log(error);
+            //   console.error(error.response.data); 
+              console.log('makeroom에러?');
+          });
+        }
+
+
+    // const makeRoom = () => {
+    //     makeRoomAPI(title, targetTime, maxUserNum,ruleNum)
+    //     .then((response)=> {
+    //         if (response !== '') {
+    //             alert('방 만들기 성공');
+    //             setTitle('');
+    //             setMaxUserNum(0);
+    //             setRuleNum(0);  
+    //             setRoomId(response.data.room_id);
+    //             setRoomCode(response.data.room_code);
+    //             console.log(roomId);
+    //             console.log(roomCode);
+    //         }
+    //         else 
+    //             alert('방 만들기 실패');
+    //     });
+    // }
 
     const titleHandler = (e) =>  {
         setTitle(e.target.value);
@@ -63,15 +100,18 @@ function MakeRoomPage( {token} ) {
                 <li>
                     <label>스터디방 이름</label>
                     <input 
-                    name="title" 
-                    type="text" 
-                    value={title}
-                    onChange={() => {titleHandler()}}
+                        name="title" 
+                        type="text"
+                        placeholder = "방 이름"
+                        value={title}
+                        onChange={titleHandler}
                     />
                 </li>
                 <li>
                     <label>스터디방 인원</label>
-                    <select onChange = {maxUserNumHandler}>
+                    <select 
+                    onChange = {maxUserNumHandler}
+                    >
                         <option value="1">1인</option>
                         <option value="2">2인</option>
                         <option value="3">3인</option>
@@ -80,82 +120,35 @@ function MakeRoomPage( {token} ) {
                     </select>
                 </li>
                 <li>
-                    <label>스터디방 마감일</label>
+                    <label>스터디방 마감일(일단 주 단위로 선택해주세요.)</label>
                     <DatePicker 
-                    selected={targetTime} 
-                    onChange={date => setTargetTime(date)}
+                    selected={targetTime}
+                    dateFormat="yyyy-MM-dd"
+                    minDate={new Date()} 
+                    onChange={date => {
+                        setTargetTime(date)
+                    }}
+                    
                     />
                 </li>
                 <li>
                     <label>룰을 선택하세요</label>
                         <button 
-                        onClick={setRuleNum(1)}>
+                        onClick={() => {setRuleNum(ruleNum=1)}}>
                             룰1
                         </button>
                         <button 
-                        onClick={setRuleNum(2)}>
+                        onClick={() => {setRuleNum(ruleNum=2)}}>
                             룰2
                         </button>
                 </li>
                 <button>
                     계속하기
                 </button>
-                {/* <li>
-                    <label>계획 50% 불이행시 벌금</label>
-                    <select>
-                        <option value="5000">오천원</option>
-                        <option value="10000">만원</option>
-                        <option value="15000">만오천원</option>
-                    </select>
-                </li>  */}
-                <li>
-                {/* <label>계획 100% 불이행시 벌금</label>
-                <select>
-                    <option value="5000">오천원</option>
-                    <option value="10000">만원</option>
-                    <option value="15000">만오천원</option>
-                </select> */}
-                </li>
-            {/* <DatePicker
-                locale={ko}
-                dateFormat="yyyy-MM-dd"
-                selected={startTime}
-                onChange={(date) => startTimeHandler(date)}
-                //selectsStart
-                startDate={startTime}
-                endDate={targetTime}
-            />
-            <DatePicker
-                locale={ko}
-                dateFormat="yyyy-MM-dd"
-                selected={targetTime}
-                onChange={(date) => targetTimeHandler(date)}
-                //selectsStart
-                startDate={targetTime}
-                minDate={startTime}
-            /> */}
-            {/* <li>
-                <label>계획 주기</label>
-                <select>
-                    <option value="7">1주일</option>
-                    <option value="14">2주일</option>
-                    <option value="21">3주일</option>
-                    <option value="28">4주일</option>
-                </select>
-            </li>
-            <li>
-                <label>계획 이행 반대 퍼센트</label>
-                <select>
-                    <option value="0.3">30%</option>
-                    <option value="0.5">50%</option>
-                    <option value="0.7">70%</option>
-                </select>
-            </li> */}
             </ul>
-                <button className="mkRoomButton" onClick={() => {
-                    makeRoom();
-                }}>
-                    방 만들기
+                <button 
+                    className="mkRoomButton" 
+                    onClick={makeRoom}> 방 만들기
                 </button>
             </div>
         </div>
