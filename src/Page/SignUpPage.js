@@ -18,15 +18,17 @@ function SignUpPage({setToken}) {
   const duplicationCheck = () => {
     duplicationCheckAPI(userid)
     .then((response) => {
-        //if(response === false){
-        if(response !== ''){
-          alert('사용 가능한 아이디입니다.');
-          setUsableId(true);
-        }
-        else {
-          alert('중복된 아이디입니다. 다시 시도하세요.');
-          setUserid('');
-        }
+      console.log(response)
+      if(response === false){
+        alert('사용 가능한 아이디입니다.');
+        setUsableId(response);
+      }
+      else{
+        alert('중복된 아이디입니다. 다시 시도하세요.');
+        setUsableId(response);
+        setUserid('');
+      }
+      console.log('중복체크');
     })
   }
 
