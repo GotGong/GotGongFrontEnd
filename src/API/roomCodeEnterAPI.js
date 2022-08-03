@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const roomCodeEnterAPI = async(room_code,token) => {
+    let room_id = ''
     await axios.post("http://localhost:8000/room/enterbycode/",  {
         room_code: room_code,
     },{
@@ -8,14 +9,18 @@ const roomCodeEnterAPI = async(room_code,token) => {
             Authorization: `Token ${token}`
         }
     })
+    
     .then((response) => {
-        console.log(response.data.room_code);
-        console.log(response.data.room_id);
-        
+        console.log("roomcode인식성공");
+        console.log(response);
+        room_id = response;
     })
     .catch(function(error){
         console.log(error);
+        console.log("roomcode인식실패");
+
     });
+    return room_id;
 }
 
 export default roomCodeEnterAPI;

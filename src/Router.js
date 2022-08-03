@@ -9,6 +9,7 @@ import RoomCodeEnterPage from "./Page/RoomCodeEnterPage";
 import RoomRulePage from "./Page/RoomRulePage";
 import RoomMainPage from "./Page/RoomMainPage";
 import ShowPlanPage from './Page/ShowPlanPage';
+import MakePlanPage from './Page/MakePlanPage';
 
 const Router = ({ token, setToken }) => {
   return (
@@ -37,8 +38,12 @@ const Router = ({ token, setToken }) => {
         element={<RoomMainPage token={token} setToken={setToken} />}
       />
       <Route
-        path="/myplan"
+        path="/plans"
         element={<ShowPlanPage token={token} setToken={setToken} />}
+        />
+      <Route
+        path="/mkplan"
+        element={<MakePlanPage token={token} setToken={setToken} />}
         />
     </Routes>
   );

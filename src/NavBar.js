@@ -61,6 +61,16 @@ const NavBar = ({token, setToken}) => {
         :
           <li></li>
         }
+        <li>
+          <Link to="/rule">
+            <button>룰</button>
+          </Link>
+        </li>
+        <li>
+          <Link to="/plans">
+            <button>계획</button>
+          </Link>
+        </li>
       </ul>
     </div>
   );

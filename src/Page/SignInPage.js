@@ -1,15 +1,17 @@
 //로그인 + 메인 페이지
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef as UseRef } from "react";
 import signInAPI from "../API/signInAPI";
 import "../css/SignInStyle.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate as UseNavigate } from "react-router-dom";
+//import axios from "axios";
+//import { useCookies as UseCookies } from 'react-cookie';
 
 function SignInPage({token, setToken}) {
   
   const [userid, setUserid] = useState('');
   const [password, setPassword] = useState('');
 
-  const navigate = useNavigate()
+  const navigate = UseNavigate()
 
   const useridHandler = (e) => {
     setUserid(e.target.value);
@@ -50,6 +52,8 @@ function SignInPage({token, setToken}) {
       console.log('로그인 상태');
   }
     }, [token]);
+
+
 
   return (
     <div className="SignInContainer">
@@ -97,5 +101,67 @@ function SignInPage({token, setToken}) {
     </div>
   );
 }
+
+// //로그인 하면 토큰을 받아 쿠키에 저장
+// const SaveToken = (props) => {
+// 	const formRef = UseRef();
+// 	const [cookies, setCookie] = UseCookies(['id']); // 쿠키 훅 
+// 	const navigate = UseNavigate();
+
+// 	const save = (e) => {
+// 		e.preventDefault();
+// 		axios
+// 			.post('/user/signin/', { // 로그인 요청
+// 				userid: formRef.current.userid.value,
+// 				password: formRef.current.password.value,
+// 			})
+// 			.then((res) => {
+// 					setCookie('id', res.data.token);// 쿠키에 토큰 저장
+// 			});
+// 	};
+
+// 	return (
+// 		<form ref={formRef} onSubmit={save}>
+// 			<input type="text" name="id" placeholder="id" required />
+// 			<input type="password" name="passWord" placeholder="passWord" required />
+// 			<input type="submit"></input>
+// 		</form>
+// 	);
+// };
+
+// //쿠키로 인증
+// const KeepSignin = (props) => {
+// 	const [cookies, setCookie, removeCookie] = UseCookies(['id']);
+// 	const [userid, setUserid] = useState(null);
+// 	const navigate = UseNavigate();
+
+// 	const authCheck = () => { // 페이지에 들어올때 쿠키로 사용자 체크
+// 		const token = cookies.id; // 쿠키에서 id 를 꺼내기
+// 		axios
+// 			.post('/users/loginCheck', { token: token }) // 토큰으로 서버에 인증 요청
+// 			.then((res) => {
+// 				setUserid(res.data.userid); // 유저 아이디 표시를 위해 작성
+// 			})
+// 			.catch(() => {
+// 				logOut(); // 에러 발생시 실행
+// 			});
+// 	};
+
+// 	useEffect(() => {
+// 		authCheck(); // 로그인 체크 함수
+// 	});
+
+// 	const logOut = () => {
+// 		removeCookie('id'); // 쿠키를 삭제
+// 		navigate('/'); // 메인 페이지로 이동
+// 	};
+
+// 	return (
+// 		<>
+// 			{userid && <h1>{userid}</h1>} // 로그인 되어있으면 아이디 표시
+// 			<button onClick={logOut}>로그아웃</button> // 로그아웃 버튼
+// 		</>
+// 	);
+// };
 
 export default SignInPage;

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import changeRoomnameAPI from "../API/changeRoomnameAPI";
+import axios from "axios";
+
 
 function RoomRulePage(token, room_id) {
   const [title, setTitle] = useState("");
@@ -7,15 +8,27 @@ function RoomRulePage(token, room_id) {
     setTitle(e.target.value);
   };
 
-  const changeRoomname = () => {
-    changeRoomnameAPI(title, room_id, token)
-      .then(() => {
-        setTitle("");
-        alert("방 이름 변경 성공");
+  const changeRoomname = async (token, room_id, title) => {
+      await axios.patch("http://localhost:8000/room/", {
+          title: title,
+          room_id: room_id,
+      },{
+          headers: {
+              Authorization: `Token ${token}`
+            }
+      }) 
+      
+      .then((response) => {
+          console.log(response);
+          setTitle("");
+          alert("방 이름 변경 성공");
       })
+  
       .catch(function (error) {
-        console.log(error);
-        alert("방 이름 변경 실패");
+          console.log(error);
+          console.log(title);
+
+          alert("방 이름 변경 실패");
       });
   };
 
