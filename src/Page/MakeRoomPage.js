@@ -4,7 +4,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import MakeRoomStyle from '../css/MakeRoomStyle.css'
 import DatePicker from "react-datepicker";
 import axios from 'axios';
-import $ from 'jquery';
+//import $ from 'jquery';
 
 
 function leftPad(value) {
@@ -91,8 +91,7 @@ function MakeRoomPage( {token} ) {
 
     return (
         <div className="RoomPageContainer">
-            <h1>MakeRoomPage입니다.</h1>
-            <h2>방 규칙 정하기</h2>
+            <h1>새로운 스터디방 만들기</h1>
             <div class="field">
             <ul id="form">
                 <li>

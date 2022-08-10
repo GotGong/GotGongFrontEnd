@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import signUpAPI from "../API/signUpAPI";
 import duplicationCheckAPI from "../API/duplicationCheckAPI";
 import { useNavigate } from 'react-router-dom';
+import "../css/SignUpStyle.css";
 
 function SignUpPage({setToken}) {
 
@@ -103,64 +104,57 @@ function SignUpPage({setToken}) {
   };
 
   return (
-    <div className="PageContainer">
-      <h1>SignUpPage입니다.</h1>
-      <div>
-        <input
-          name="email"
-          type="text"
-          placeholder="이메일"
-          value={email}
-          onChange={emailHandler}
-        />
-      </div>
-      <div>
-        <input
-          name="username"
-          type="text"
-          placeholder="이름"
-          value={username}
-          onChange={usernameHandler}
-        />
-      </div>
-      <div>
-        <input
-          name="userid"
-          type="text"
-          placeholder="아이디"
-          value={userid}
-          onChange={useridHandler}
-        />
-      </div>
-      <div>
-        <button className="duplicationCheckButton" onClick={duplicationCheck}>
-          중복확인
-        </button>
-      </div>
-      <div>
-        <input
-          name="password"
-          type="password"
-          placeholder="비밀번호"
-          value={password}
-          onChange={passwordHandler}
-        />
-      </div>
-      <div>
-        <input
-          name="passwordToConfirm"
-          type="password"
-          placeholder="비밀번호 재확인"
-          value={passwordToConfirm}
-          onChange={passwordToConfirmHandler}
-        />
-      </div>
-      
-      
-      <div>
-        <button className="signUpButton" onClick={signUp}>
-          가입하기
-        </button>
+    <div className="SignUpContainer">
+      <h1>회원가입</h1>
+      <div className="SignUpForm">
+        <div>
+          <input
+            name="email"
+            type="text"
+            placeholder="이메일 주소"
+            onChange={emailHandler}
+          />
+        </div>
+        <div>
+          <input
+            name="username"
+            type="text"
+            placeholder="이름"
+            onChange={usernameHandler}
+          />
+        </div>
+        <div>
+          <input id="idInput"
+            name="userid"
+            type="text"
+            placeholder="아이디"
+            onChange={useridHandler}
+          />
+          <button className="DuplicationCheckButton" onClick={duplicationCheck}>
+            중복확인
+          </button>
+        </div>
+        <div>
+          <input
+            name="password"
+            type="password"
+            placeholder="비밀번호"
+            onChange={passwordHandler}
+          />
+        </div>
+        <div>
+          <input
+            name="passwordToConfirm"
+            type="password"
+            placeholder="비밀번호 재확인"
+            onChange={passwordToConfirmHandler}
+          />
+        </div>
+        <div>
+          <button className="SignUpButton" onClick={signUp}>
+            가입하기
+          </button>
+        </div>
       </div>
     </div>
   );
