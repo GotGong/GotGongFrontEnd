@@ -3,6 +3,12 @@ import { Link } from "react-router-dom";
 import "../css/RoomHomeStyle.css";
 import axios from "axios";
 
+<<<<<<< HEAD
+=======
+// function RoomHomePage({ token }) {
+//   const [roomId, setRoomId] = useState(0);
+
+>>>>>>> 690affac0c7c7176b40d886b3c39679c3cf978e4
 
 function RoomHomePage({token}) {
     const [roomId, setRoomId] = useState(0);
@@ -91,7 +97,6 @@ function RoomHomePage({token}) {
         </ul>
       </div>
     </div>
-  );
-}
+  )};
 
 export default RoomHomePage;

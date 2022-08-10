@@ -153,7 +153,7 @@ function MakeRoomPage( {token} ) {
                             id ='input-box'
                             name="title" 
                             type="text"
-                            placeholder = "방 이름"
+                            // placeholder = "방 이름"
                             value={title}
                             onChange={titleHandler}
                         />

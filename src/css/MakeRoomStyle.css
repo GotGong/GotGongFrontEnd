@@ -1,6 +1,5 @@
 
 .field  {
-    background:#fff;
     border-radius: 10px;
     padding: 20px;
 
@@ -26,7 +25,7 @@
       padding: 7px 25px;
 
     position: absolute;
-    top: 40%;
+    top: 1000%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
@@ -36,12 +35,13 @@
     border-radius: 10px;
 
     position: absolute;
-    top: 40%;
+    top: 100%;
     left: 50%;
     transform: translate(-50%, -50%);
     
 
     color: white;
+    font-size: 15px;
     background-color: black;
 
     width: 130px;
@@ -52,11 +52,12 @@
 
     margin: auto;
     padding: 7px 25px; 
+
+    margin-top: 40px;
+
 }
 
-#step1 {
-    text-align: center;
-}
+
 
 .options {
     display: block;
@@ -85,7 +86,7 @@
 }
 
 .rule {
-    background-color: #fff;
+    background-color: rgb(255, 255, 255);
     border: 2px solid #DBDBDB;;
 
     width: 400px;
@@ -94,6 +95,10 @@
     border-radius: 10px;
     margin:5px;
     margin-top: 10px;
+}
+
+#step1 {
+    text-align: center;
 }
 
 #step2 {
@@ -117,6 +122,15 @@
 
     border: 1px solid #000000;
     border-radius: 10px;
+
+    background-color: white;
+
+    
+}
+
+.options ::placeholder {
+    color: #000;
+    font-size: 15px;
 }
 
 #select-box {
