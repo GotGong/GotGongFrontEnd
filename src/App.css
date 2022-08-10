@@ -2,7 +2,10 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #F5F5F5;
+}
+
+::placeholder{
+  color: #000000;
 }
 
 .NavBarContainer {
