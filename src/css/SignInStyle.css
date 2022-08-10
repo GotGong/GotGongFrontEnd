@@ -1,21 +1,84 @@
 .SignInContainer {
-    margin:0 auto;
+  position: fixed;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+
+  font-family: 'Sandoll GothicNeo2';
+  font-style: normal;
+  font-weight: 400;
 }
 
-.SignInTop {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
+.SignInTop{
+  width: 50%;
+}
+
+.SignInTop input{
+  background: #EDEDED;
+  border-radius: 22px;
+  font-size: 24px;
+  line-height: 25px;
+  border: none;
+  margin-bottom: 20px;
+}
+
+.idInput input {
+  position: relative;
+  width: 492px;
+  height: 97px;
+  color: #000000;
+  
+}
+
+.passwordInput input {
+  position: relative;
+  width: 492px;
+  height: 97px;
+}
+
+ .signInButton button {
+  position: relative;
+  width: 492px;
+  height: 97px;
+  background: #000000;
+  border-radius: 22px;
+
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 37px;
+  color: #FFFFFF;
+}
+
+.SignInBottom {
+  font-size: 20px;
+  text-align:center;
 }
 
 .SignInBottom ul  {
-    list-style: none;
-
-  }
+  list-style: none;
+  color: #000000;
+  width: 492px;
+  display:inline-block;
+}
 
 .SignInBottom ul li  {
-    float: left;
-    width: 100px;
-    padding: 10px;
-  }
+  float: left;
+  padding: 20px;
+  margin-left: 10px;
+}
+
+.SignInBottom a {
+  text-decoration-line: none;
+}
+
+/* .signUp {
+  left: 534px;
+}
+
+.findId {
+  left: 677px;
+}
+
+.findPassword {
+  left: 850px;
+} */

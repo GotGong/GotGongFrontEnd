@@ -1,49 +1,45 @@
+.RoomPageContainer {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .RoomPageContainer ul  {
-    list-style: none;
-  
-  }
-
-.btn-box {
-  /* background-color: antiquewhite; */
-  text-align: center;
+  list-style: none;
 }
 
-.btn {
-  width: 200px;
-  height: 75px;
+.RoomPageContainer ul li {
+  float: left;
+  padding: 20px;
+}
 
-  display :inline-block;
-  margin: 5px;
-
-  font-family: 'Sandoll GothicNeo2';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 18px;
-  line-height:37px;
-
-  color: #000000;
-  background-color: white;
-
+.mkroomBtn {
+  width: 250px;
+  height: 100px;
   border: 2px solid #DBDBDB;
-  border-radius: 15px;
+  border-radius: 20px;  
+  font-size: 25px;
+  color: #000000;
+  background: #F5F5F5;
+  top: 100px;
 }
 
-.btn:hover {
-  border: 2px solid black;
+.enterBtn  {
+  width: 250px;
+  height: 100px;
+  border: 2px solid #DBDBDB;
+  border-radius: 20px;  
+  font-size: 25px;
+  color: #000000;
+  background: #F5F5F5;
+  top: 100px;
 }
 
-.list-box {
-  /* background-color: aquamarine; */
-  text-align: center;
-}
+.showRoomList {
 
-.list {
-  display: inline-block;
-  border: 3px solid rgb(221, 221, 221);
-  width: 405px;
-  height: 200px;
-  background-color: rgb(221, 221, 221);
-  margin-top: 15px;
-  border-radius: 15px;
+  width: 520px;
+  height: 320px;
+  background: #EDEDED;
+  border-radius: 22px;
 }
-

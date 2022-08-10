@@ -4,7 +4,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import MakeRoomStyle from '../css/MakeRoomStyle.css'
 import DatePicker from "react-datepicker";
 import axios from 'axios';
-import $ from 'jquery';
+//import $ from 'jquery';
 
 
 function leftPad(value) {
