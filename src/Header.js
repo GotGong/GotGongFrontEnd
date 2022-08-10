@@ -1,17 +1,18 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import './App.css';
 
 
-const username  = localStorage.getItem('username');
-
 const Header = ({token, setToken}) => {
+    const navigate = useNavigate();
     const [signInOn, setSignInOn] = useState(false);
-  
+    const username  = localStorage.getItem('username');
+
     const resetHandler = () => {
       setToken('');
       setSignInOn(false);
       localStorage.clear();
+      navigate('/');
     };
 
     useEffect(() => {
@@ -25,7 +26,11 @@ const Header = ({token, setToken}) => {
             <Link to="/">
                 <img className="gotgongLogo" src={ require('./img/같공로고1.png') } />
             </Link>
-            <button className='headerUsername' onClick={resetHandler}>이름</button>
+            {signInOn ? 
+                <button className='headerUsername' onClick={resetHandler}>{username}</button>
+            :
+                <></>
+            }
         </div>
     );
 };
