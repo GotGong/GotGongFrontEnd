@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 //import axios from "axios";
 import roomCodeEnterAPI from "../API/roomCodeEnterAPI";
+import "../css/RoomCodeEnterStyle.css";
 
 function RoomCodeEnterPage({ token, setToken }) {
   const [room_code, setRoom_code] = useState("");
@@ -59,10 +60,9 @@ function RoomCodeEnterPage({ token, setToken }) {
     <div className="RoomCodeEnterPageContainer">
       {token}
       <div>
-        <h1>RoomCodeEnterPage입니다.</h1>
+        <input name="roomcode" type="text" placeholder="참여코드" value={room_code} onChange={(e) => setRoom_code(e.target.value)} />
       </div>
       <div>
-        <input name="roomcode" type="text" placeholder="참여코드" value={room_code} onChange={(e) => setRoom_code(e.target.value)} />
         <button onClick={codeEnter}>참여하기</button>
       </div>
     </div>

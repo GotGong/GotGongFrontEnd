@@ -1,4 +1,45 @@
+.RoomPageContainer {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .RoomPageContainer ul  {
-    list-style: none;
-  
-  }
+  list-style: none;
+}
+
+.RoomPageContainer ul li {
+  float: left;
+  padding: 20px;
+}
+
+.mkroomBtn {
+  width: 250px;
+  height: 100px;
+  border: 2px solid #DBDBDB;
+  border-radius: 20px;  
+  font-size: 25px;
+  color: #000000;
+  background: #F5F5F5;
+  top: 100px;
+}
+
+.enterBtn  {
+  width: 250px;
+  height: 100px;
+  border: 2px solid #DBDBDB;
+  border-radius: 20px;  
+  font-size: 25px;
+  color: #000000;
+  background: #F5F5F5;
+  top: 100px;
+}
+
+.showRoomList {
+
+  width: 520px;
+  height: 320px;
+  background: #EDEDED;
+  border-radius: 22px;
+}

@@ -2,6 +2,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  background: #F5F5F5;
 }
 
 .NavBarContainer {
@@ -23,10 +24,39 @@ body {
   padding: 10px;
 }
 
-.PageContainer {
+/* .PageContainer {
   background-color: white;
   position: fixed;
   width: 100%;
   height: 100%;
   margin-top: 10px;
+} */
+
+.header  {
+  width: 100%;
+}
+
+.gotgongLogo {
+  position:fixed;
+  width: 120px;
+  height: 152px;
+  left: 86px;
+  top: 82px;
+}
+
+.headerUsername {
+  position: fixed;
+  width: 100px;
+  height: 100px;
+  right: 86px;
+  top: 82px;
+  background: #EDEDED;
+  border-radius: 22px;
+  border: none;
+  font-family: 'Sandoll GothicNeo2';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 33px;
+  color: #000000;
 }

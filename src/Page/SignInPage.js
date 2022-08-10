@@ -58,40 +58,43 @@ function SignInPage({token, setToken}) {
   return (
     <div className="SignInContainer">
       <div className="SignInTop">
-        <input
-          name="userid"
-          type="text"
-          placeholder="아이디"
-          value={userid}
-          onChange={useridHandler}
-        />
-        <input
-          name="password"
-          type="password"
-          placeholder="비밀번호"
-          value={password}
-          onChange={passwordHandler}
-        />
-
-      <div>
-        <button className="signInButton" onClick={signIn}>
-          로그인
-        </button>
-      </div>
+        <div className="idInput">
+          <input 
+            name="userid"
+            type="text"
+            placeholder="아이디"
+            value={userid}
+            onChange={useridHandler}
+          />
+        </div>
+        <div className="passwordInput">
+          <input
+            name="password"
+            type="password"
+            placeholder="비밀번호"
+            value={password}
+            onChange={passwordHandler}
+          />
+        </div>
+        <div className="signInButton">
+          <button onClick={signIn}>
+            로그인
+          </button>
+        </div>
       </div>
       <div className="SignInBottom">
         <ul>
-          <li>
+          <li className="signUp">
             <Link to="/signup">
               <span>회원가입</span>
             </Link>
           </li>
-          <li>
+          <li className="findId">
             <Link to="/">
               <span>아이디찾기</span>
             </Link>
           </li>
-          <li>
+          <li className="findPassword">
             <Link to="/">
               <span>비밀번호찾기</span>
             </Link>
