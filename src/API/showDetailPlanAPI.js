@@ -6,7 +6,9 @@ const showDetailPlanAPI = async (token, plan_id) => {
       "http://localhost:8000/plan/all_detail/",
       {
         plan_id: plan_id,
-        headers: { Authorization: `Token ${token}` },
+        headers: { 
+          Authorization: `Token ${token}`
+        },
       }
     )
     .then((response) => {
