@@ -1,11 +1,6 @@
 
 .field  {
-    border-radius: 10px;
-    padding: 20px;
-
-    width: 400px;	
-    height: 200px;
-    margin:30px auto;
+    background-color: rgb(255, 255, 255);
 }
 
 
@@ -13,47 +8,41 @@
     border: 1px solid rgb(0, 0, 0);
     border-radius: 10px;
 
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%, 0);
+    
+
     color: white;
+    font-size: 30px;
     background-color: black;
 
-    width: 130px;
-    height: 40px;
+    display: block;
+    letter-spacing: 1px;
 
-      display: block;
-      letter-spacing: 1px;
-      margin: auto;
-      padding: 7px 25px;
+    margin: auto;
+    padding: 7px 25px;
 
-    position: absolute;
-    top: 1000%;
-    left: 50%;
-    transform: translate(-50%, -50%);
 }
 
 .cntinuBtn {
     border: 1px solid rgb(0, 0, 0);
     border-radius: 10px;
 
-    position: absolute;
-    top: 100%;
+    position: fixed;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, 0);
     
 
     color: white;
-    font-size: 15px;
+    font-size: 30px;
     background-color: black;
-
-    width: 130px;
-    height: 40px;
 
     display: block;
     letter-spacing: 1px;
 
     margin: auto;
-    padding: 7px 25px; 
-
-    margin-top: 40px;
+    padding: 7px 25px;
 
 }
 
@@ -92,6 +81,8 @@
     width: 400px;
     height: 80px;
 
+    color:rgb(0, 0, 0);
+
     border-radius: 10px;
     margin:5px;
     margin-top: 10px;
@@ -109,14 +100,11 @@
     display: none;
 }
 
-#step4 {
-    display: none;
-}
 
 #input-box {
 
-    width: 200px;
-    height: 50px;
+    width: 424px;
+    height: 106px;
 
     margin: 10px;
 
@@ -125,17 +113,18 @@
 
     background-color: white;
 
+    font-size: 40px;
     
 }
 
 .options ::placeholder {
     color: #000;
-    font-size: 15px;
+    font-size: 40px;
 }
 
 #select-box {
-    width: 200px;
-    height: 50px;
+    width: 424px;
+    height: 106px;
 
     margin: 10px;
 

@@ -147,7 +147,7 @@ function MakeRoomPage( {token} ) {
             <div class="field">
             <div id='step1'>
                     <div className='options'>
-                        <h4>새로운 스터디방 만들기</h4>
+                        <h2>새로운 스터디방 만들기</h2>
                         <label>스터디방 이름</label>
                         <input 
                             id ='input-box'
@@ -163,11 +163,10 @@ function MakeRoomPage( {token} ) {
                         <select id='select-box'
                         onChange = {maxUserNumHandler}
                         >
-                            <option value="1">1인</option>
-                            <option value="2">2인</option>
                             <option value="3">3인</option>
                             <option value="4">4인</option>
                             <option value="5">5인</option>
+                            <option value="6">6인</option>
                         </select>
                     </div> 
                     <button className='cntinuBtn' onClick={goStep2}>
