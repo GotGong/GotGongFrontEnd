@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const NavBar = ({token, setToken}) => {
   // signInOn === true -> 로그아웃 버튼 보여줌
