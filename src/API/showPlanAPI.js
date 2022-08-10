@@ -6,7 +6,10 @@ const showPlanAPI = async (token, room_id) => {
       "http://localhost:8000/plan/all_plan/",
       {
         room_id: room_id,
-        headers: { Authorization: `Token ${token}` },
+        headers: { 
+          // Authorization: `Token ${token}`
+      Authorization: localStorage.getItem('token'),
+        },
       }
     )
     .then((response) => {

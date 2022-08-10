@@ -6,8 +6,11 @@ import { Link, useNavigate as UseNavigate } from "react-router-dom";
 //import axios from "axios";
 //import { useCookies as UseCookies } from 'react-cookie';
 
+
 function SignInPage({token, setToken}) {
   
+  // const localSt_token = localStorage.getItem('token');
+
   const [userid, setUserid] = useState('');
   const [password, setPassword] = useState('');
 
@@ -52,6 +55,12 @@ function SignInPage({token, setToken}) {
       console.log('로그인 상태');
   }
     }, [token]);
+
+  //   useEffect(() => {
+  //     if (localStorage.getItem('token') !== null) {
+  //       setIsLogin(true);
+  //     }
+  // }, []);
 
 
 

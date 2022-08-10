@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 const NavBar = ({token, setToken}) => {
   // signInOn === true -> 로그아웃 버튼 보여줌
@@ -9,26 +9,41 @@ const NavBar = ({token, setToken}) => {
   // token 값이 바뀔때만 실행 -> signInOn 변경
   // 1. token 값이 ''이 될 때 (signOut) -> signInOn = false
   // 2. token이 값을 지니게 될 때 (signIn) -> signInOn = true
+  // useEffect(() => {
+  //   token === null ? setSignInOn(false) : setSignInOn(true)
+  // }, [token]);
+
+  const resetHandler = () => {
+    setToken('');
+    setSignInOn(false);
+    localStorage.clear();
+  };
+
   useEffect(() => {
-    token === '' ? setSignInOn(false) : setSignInOn(true)
-  }, [token]);
+    if (localStorage.getItem('token') !== null) {
+      setSignInOn(true);
+    }
+}, [token]);
 
   return (
     <div className="NavBarContainer">
       <div>
-        {token}
+        {localStorage.getItem('token')}
       </div>
       <ul>
         <li>
+          {/* 로그인 전일땐 /인데 로그인 후일땐 /room이여야함 */}
           <Link to="/">
             <button>홈</button>
           </Link>
         </li>
         {signInOn ?
           <li>
-            <button className="NavBarButton" onClick={() => setToken('')}>
-              로그아웃
-            </button>
+            <Link to="/">
+              <button className="NavBarButton" onClick={resetHandler}>
+                로그아웃
+              </button>
+            </Link>
           </li>
         :
           <li>

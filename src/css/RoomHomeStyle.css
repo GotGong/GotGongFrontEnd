@@ -2,3 +2,48 @@
     list-style: none;
   
   }
+
+.btn-box {
+  /* background-color: antiquewhite; */
+  text-align: center;
+}
+
+.btn {
+  width: 200px;
+  height: 75px;
+
+  display :inline-block;
+  margin: 5px;
+
+  font-family: 'Sandoll GothicNeo2';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height:37px;
+
+  color: #000000;
+  background-color: white;
+
+  border: 2px solid #DBDBDB;
+  border-radius: 15px;
+}
+
+.btn:hover {
+  border: 2px solid black;
+}
+
+.list-box {
+  /* background-color: aquamarine; */
+  text-align: center;
+}
+
+.list {
+  display: inline-block;
+  border: 3px solid rgb(221, 221, 221);
+  width: 405px;
+  height: 200px;
+  background-color: rgb(221, 221, 221);
+  margin-top: 15px;
+  border-radius: 15px;
+}
+

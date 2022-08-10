@@ -1,28 +1,131 @@
 
 .field  {
     background:#fff;
-    border:1px solid #222;
-    border-radius: 5px;
+    border-radius: 10px;
     padding: 20px;
+
     width: 400px;	
+    height: 200px;
     margin:30px auto;
 }
 
-#form ul li  {
-    line-height: 30px;
-    list-style: none;
-    padding: 5px 10px;
-    margin-bottom: 2px;
-}
-#form li  {
-    margin-top: 10px;
-}
 
-.mkRoomButton {
-    border: 1px solid #222;
-      border-radius: 20px;
+.mkRoomBtn {
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 10px;
+
+    color: white;
+    background-color: black;
+
+    width: 130px;
+    height: 40px;
+
       display: block;
       letter-spacing: 1px;
       margin: auto;
       padding: 7px 25px;
+
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
+
+.cntinuBtn {
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 10px;
+
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+
+    color: white;
+    background-color: black;
+
+    width: 130px;
+    height: 40px;
+
+    display: block;
+    letter-spacing: 1px;
+
+    margin: auto;
+    padding: 7px 25px; 
+}
+
+#step1 {
+    text-align: center;
+}
+
+.options {
+    display: block;
+    text-align: left;
+
+    margin-top: 20px;
+
+    /* background-color: bisque; */
+}
+
+#calendar {
+    width: 200px;
+    height: 50px;
+
+    margin-top: 30px;
+
+    border: 1px solid #000000;
+    border-radius: 10px;
+}
+
+.choice-rule {
+    text-align: center;
+}
+.rule:hover {
+    border: 2px solid black;
+}
+
+.rule {
+    background-color: #fff;
+    border: 2px solid #DBDBDB;;
+
+    width: 400px;
+    height: 80px;
+
+    border-radius: 10px;
+    margin:5px;
+    margin-top: 10px;
+}
+
+#step2 {
+    display: none;
+}
+
+#step3 {
+    display: none;
+}
+
+#step4 {
+    display: none;
+}
+
+#input-box {
+
+    width: 200px;
+    height: 50px;
+
+    margin: 10px;
+
+    border: 1px solid #000000;
+    border-radius: 10px;
+}
+
+#select-box {
+    width: 200px;
+    height: 50px;
+
+    margin: 10px;
+
+    border: 1px solid #000000;
+    border-radius: 10px;
+}
+

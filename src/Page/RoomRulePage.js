@@ -14,7 +14,8 @@ function RoomRulePage(token, room_id) {
           room_id: room_id,
       },{
           headers: {
-              Authorization: `Token ${token}`
+              // Authorization: `Token ${token}`
+      Authorization: localStorage.getItem('token'),
             }
       }) 
       

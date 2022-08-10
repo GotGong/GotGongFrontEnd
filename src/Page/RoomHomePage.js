@@ -6,49 +6,35 @@ import axios from 'axios';
 
 function RoomHomePage({token}) {
     const [roomId, setRoomId] = useState(0);
+    const [roomList, setRoomList] = useState([]);
+    
 
     const showRoomListAPI = useCallback(() => {
         axios.get(`http://localhost:8000/room/myroomlist/`,
             { headers: {
-                Authorization:`Token ${token}`,
+                Authorization: `Token ${token}`
                 }
             }
         )
         .then((response) => {
         console.log(response.data);
-          const roomTitle = [];
-                for(let i =0; i < response.data.length; i++)
-                {
-                    console.log('for문');
-                    roomTitle.push(
-                        <div key={i}>
-                            {response[0][i].title}
-                        </div>
-                    )
-                }
+        setRoomList(response.data);
+        // const roomTitle = [];
+        // for(let i =0; i < response.data.length; i++)
+        //         {
+        //             console.log('for문');
+        //             roomTitle.push(
+        //                 <div key={i}>
+        //                     {response[0][i].title}
+        //                 </div>
+        //             )
+        //         }
         })
         .catch(function (error) {
             console.log(token);
             console.error(error.response.data); 
         });
     });
-
-    // const signUpAPI = async (userid, password, username, email) => {
-    //     let token = ''
-    //     await axios.post("http://localhost:8000/user/signup/", {
-    //       userid: userid,
-    //       password: password,
-    //       username: username,
-    //       email: email,
-    //     })
-    //     .then((response) => {
-    //       token = response.data.Token;
-    //     })
-    //     .catch(function (error) {
-    //       console.log(error);
-    //     });
-    //     return token;
-    //   }
 
     const roomEnterAPI = useCallback(() => {
         setRoomId()
@@ -71,48 +57,70 @@ function RoomHomePage({token}) {
             console.error(error.response.data); 
         });
     });
+    
+    
+    useEffect(() => {
+    // if(roomList !== []){
+        const roomTitle = [];
+        for(let i =0; i < roomList.length; i++)
+                {
+                    console.log('for문');
+                    roomTitle.push(
+                        <div key={i}>
+                            {roomList[0][i].title}
+                        </div>
+                    )
+                }
+    // }
+    // else{
+    //     console.log('room 없음');
+    // }
+        }, [roomList]);
+
+    // const showRoomlist = () => {
+    //     const roomTitle = [];
+    //     for(let i =0; i < roomList.length; i++)
+    //             {
+    //                 console.log('for문');
+    //                 roomTitle.push(
+    //                     <div key={i}>
+    //                         {roomList[0][i].title}
+    //                     </div>
+    //                 )
+    //             }
+    //     return roomTitle;
+    // }
 
 
     return (
         <div>
-            <h1>RoomHomePage입니다.</h1>
             <div className="RoomPageContainer">
-            <div>
-                <ul>
-                    <li>
+            <div className='btn-box'>
                         <Link to="/mkroom">
-                            <button>
+                            <button className='btn'>
                             방 만들기
                             </button>
                         </Link>
-                    </li>
-                </ul>
-            </div>
-            <div>
-                <ul>
-                    <li>
                         <Link to="/enterbycode">
-                            <button>
+                            <button className='btn'>
                             참여하기
                             </button>
                         </Link>
-                    </li>
-                </ul>
             </div>
-            <div>
-                <ul>
-                    <li>
-                        <h4>내가 속한 방 리스트</h4>
+            <div className='list-box'>
+                        <div className='list'>
+                            <h4>내가 속한 방 리스트</h4>
+                        </div>
+                        {/* <div>
                             <button onClick={showRoomListAPI}>
-                                showroomList
+                                    btn 
                             </button>
+                        </div>
                         <Link to="/myrooms">
                             <button onClick={roomEnterAPI}>
                                 roomenter
                             </button>
-                        </Link>
-                    </li>
-                </ul>
+                        </Link> */}
             </div>
         </div>
     </div>
