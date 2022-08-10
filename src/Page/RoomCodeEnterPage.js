@@ -58,7 +58,6 @@ function RoomCodeEnterPage({ token, setToken }) {
 
   return (
     <div className="RoomCodeEnterPageContainer">
-      {token}
       <div>
         <input name="roomcode" type="text" placeholder="참여코드" value={room_code} onChange={(e) => setRoom_code(e.target.value)} />
       </div>

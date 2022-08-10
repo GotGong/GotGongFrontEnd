@@ -4,6 +4,10 @@ body {
   align-items: center;
 }
 
+::placeholder{
+  color: #000000;
+}
+
 .NavBarContainer {
   background-color: tomato;
   /* position: fixed; */
