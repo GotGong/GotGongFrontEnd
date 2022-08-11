@@ -31,6 +31,7 @@ function MakeRoomPage( {token} ) {
 
     let [roomId, setRoomId] = useState(0);
     let [roomCode, setRoomCode] = useState('');
+    let [entryfee, setEntryfee] = useState(0);
 
     const makeRoom = ()  => {
 
@@ -41,8 +42,8 @@ function MakeRoomPage( {token} ) {
         console.log(targetTime);
         console.log(maxUserNum);
         console.log(ruleNum);
+        console.log(entryfee);
 
-        
         
         axios.post("http://localhost:8000/room/", 
           { 
@@ -50,9 +51,10 @@ function MakeRoomPage( {token} ) {
                 target_date: targetTime,
                 max_user_num: maxUserNum,
                 rule_num: ruleNum,
+                entry_fee: entryfee,
           },
           { headers: {
-            Authorization:`Token ${token}`,
+                Authorization:`Token ${token}`,
             }
         })
           .then((response) => {
@@ -63,6 +65,7 @@ function MakeRoomPage( {token} ) {
                 setTitle('');
                 setMaxUserNum(0);
                 setRuleNum(0);  
+                setEntryfee(0);
                 setRoomId(roomId = response.data.room_id);
                 setRoomCode(roomCode = response.data.room_code);
                 console.log(roomId);
@@ -89,12 +92,20 @@ function MakeRoomPage( {token} ) {
     }
 
 
-       
+    const step0 = document.querySelector("#step0");
     const step1 = document.querySelector("#step1");
     const step2 = document.querySelector("#step2");
     const step3 = document.querySelector("#step3");
 
-    let [step, setStep] = useState(1);
+    let [step, setStep] = useState(0);
+
+
+    function goStep1() {
+        setStep(step = 1);
+        setEntryfee(entryfee=20000);
+        step0.style.display = "none";
+        step1.style.display = "block"; 
+    }
 
     function goStep2() {
         setStep(step = 2);
@@ -145,6 +156,10 @@ function MakeRoomPage( {token} ) {
     return (
         <div className="RoomPageContainer">
             <div class="field">
+            <div id='step0'>
+                <h1>참가비는 2만원입니다.</h1>
+                <button onClick={goStep1}>ok</button>
+            </div>
             <div id='step1'>
                     <div className='options'>
                         <h2>새로운 스터디방 만들기</h2>
