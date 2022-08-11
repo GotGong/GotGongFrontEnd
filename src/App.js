@@ -10,8 +10,8 @@ const App = () => {
   return (
     <div>
       <div className="AppContainer">
-        {/* <NavBar token={token} setToken={setToken}/> */}
-        <Header token={token} setToken={setToken}/>
+        <NavBar token={token} setToken={setToken}/>
+        {/* <Header token={token} setToken={setToken}/> */}
         <Router token={token} setToken={setToken}/>
       </div>
     </div>

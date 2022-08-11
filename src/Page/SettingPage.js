@@ -8,6 +8,8 @@ const SettingPage = ({token, setToken}) => {
   const [username, setUsername] = useState('');
   const [userid, setUserid] = useState('');
   const [password, setPassword] = useState('');
+  const Username  = localStorage.getItem('username');
+  const UserId  = localStorage.getItem('userId');
 
   const usernameHandler = (e) => {
     setUsername(e.target.value);
@@ -59,12 +61,11 @@ const SettingPage = ({token, setToken}) => {
           <input
             name="username"
             type="text"
-            placeholder="username"
-            value={username}
+            placeholder={Username}
             onChange={usernameHandler}
           />
           <button className="changeUsername" onClick={changeUsername}>
-            사용자이름변경
+            이름변경
           </button>
         </div>
         <br/>
@@ -72,12 +73,11 @@ const SettingPage = ({token, setToken}) => {
           <input
             name="userid"
             type="text"
-            placeholder="userid"
-            value={userid}
+            placeholder={UserId}
             onChange={useridHandler}
           />
           <button className="changeUserid" onClick={changeUserid}>
-            사용자아이디변경
+            아이디변경
           </button>
         </div>
         <br/>
@@ -86,11 +86,10 @@ const SettingPage = ({token, setToken}) => {
             name="password"
             type="text"
             placeholder="password"
-            value={password}
             onChange={passwordHandler}
           />
           <button className="changePassword" onClick={changePassword}>
-            사용자비밀번호변경
+            비밀번호변경
           </button>
         </div>
         <br/><br/>

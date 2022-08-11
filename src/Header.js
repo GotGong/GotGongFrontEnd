@@ -23,9 +23,15 @@ const Header = ({token, setToken}) => {
 
     return (
         <div className='header'>
-            <Link to="/">
-                <img className="gotgongLogo" src={ require('./img/같공로고1.png') } />
-            </Link>
+            {signInOn ?
+                <Link to="/room">
+                    <img className="gotgongLogo" src={ require('./img/같공로고1.png') } />
+                </Link>
+            :
+                <Link to="/">
+                    <img className="gotgongLogo" src={ require('./img/같공로고1.png') } />
+                </Link>
+            }
             {signInOn ? 
                 <button className='headerUsername' onClick={resetHandler}>{username}</button>
             :
