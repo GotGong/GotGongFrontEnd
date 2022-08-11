@@ -58,7 +58,6 @@
 
 .SignInBottom ul  {
   list-style: none;
-  color: #000000;
   width: 492px;
   display:inline-block;
 }
@@ -71,6 +70,7 @@
 
 .SignInBottom a {
   text-decoration-line: none;
+  color: #000000;
 }
 
 /* .signUp {
