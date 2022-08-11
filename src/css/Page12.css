@@ -1,0 +1,55 @@
+#Page12-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+
+    width: 95%;
+    height: 92%;
+    background-color: #BFBFBF;
+    border-radius: 20px;
+
+    display: grid;
+    grid-template-rows: 1fr 15fr 1fr 10fr 1fr 10fr;
+
+}
+
+#Page12-plan {
+    display: grid;
+    grid-template-columns: 2fr 4fr 88fr 4fr 2fr;
+}
+
+#Page12-document-img {
+    /* position:fixed; */
+    width: 30px;
+    height: 40px;
+    /* left: 50px;
+    top: 60px; */
+} 
+
+
+
+#Page12-textarea-wrapper {
+    width: 100%;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    background-color: #FFFFFF;
+}
+
+textarea {
+    width: 100%;
+    height: 95%;
+    border-color: #FFFFFF;
+    resize: none;
+    font-size: 24px;
+    line-height: 25px;
+}
+
+
+#Page12-detail-plans {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    overflow: scroll;
+}

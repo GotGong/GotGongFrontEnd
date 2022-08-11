@@ -10,6 +10,7 @@ import RoomRulePage from "./Page/RoomRulePage";
 import RoomMainPage from "./Page/RoomMainPage";
 import ShowPlanPage from './Page/ShowPlanPage';
 import MakePlanPage from './Page/MakePlanPage';
+import Page12 from "./Page/Page12";
 
 const Router = ({ token, setToken }) => {
   return (
@@ -45,6 +46,10 @@ const Router = ({ token, setToken }) => {
         path="/mkplan"
         element={<MakePlanPage token={token} setToken={setToken} />}
         />
+      <Route
+        path="/12"
+        element={<Page12/>}
+      />
     </Routes>
   );
 };
