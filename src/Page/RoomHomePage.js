@@ -1,14 +1,23 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useMemo, useEffect, useState, useCallback } from "react";
 import { Link } from "react-router-dom";
 import "../css/RoomHomeStyle.css";
 import axios from "axios";
 
+
 function RoomHomePage({token}) {
+
+    
+    // useEffect(() => {
+    //     // 룸리스트 조회, 보이기
+    //     console.log('useEffect 실행');
+    //     showRoomListAPI();
+    //     },[]);
+
     const [roomId, setRoomId] = useState(0);
     const [roomList, setRoomList] = useState([]);
     
 
-    const showRoomListAPI = useCallback(() => {
+    useEffect(()=> {    
         axios.get(`http://localhost:8000/room/myroomlist/`,
             { headers: {
                 Authorization: `Token ${token}`
@@ -16,24 +25,23 @@ function RoomHomePage({token}) {
             }
         )
         .then((response) => {
-        console.log(response.data);
-        setRoomList(response.data);
         // const roomTitle = [];
-        // for(let i =0; i < response.data.length; i++)
-        //         {
-        //             console.log('for문');
-        //             roomTitle.push(
-        //                 <div key={i}>
-        //                     {response[0][i].title}
-        //                 </div>
-        //             )
-        //         }
+        console.log('api 호출 성공');
+        console.log(response.data);
+        console.log(response.data.room_count);
+        for(let i=0;i<response.data.room_count;i++){
+            roomList.push(response.data.my_room_list[i].title);
+        }
+        setRoomList(roomList);
+        console.log(roomList)
         })
         .catch(function (error) {
             console.log(token);
             console.error(error.response.data); 
         });
-    });
+        
+    },);
+    // },[]);
 
     const roomEnterAPI = useCallback(() => {
         setRoomId()
@@ -61,33 +69,22 @@ function RoomHomePage({token}) {
 
   return (
     <div className="RoomPageContainer">
-      <div>
-        <ul>
-          <li>
+      <div className="button-box">
             <Link to="/mkroom">
-              <button className="mkroomBtn">방 만들기</button>
+              <button className="mkroomBtn" >방 만들기</button>
             </Link>
-          </li>
-          <li>
             <Link to="/enterbycode">
               <button className="enterBtn">참여하기</button>
             </Link>
-          </li>
-        </ul>
       </div>
       <div className="showRoomList">
-        <ul>
-          <li>
-            {/* <button onClick={showRoomListAPI}>
-                                    showroomList
-                                </button>
-                            <Link to="/myrooms">
-                                <button onClick={roomEnterAPI}>
-                                    roomenter
-                                </button>
-                            </Link> */}
-          </li>
-        </ul>
+        {roomList.map((t)=> {
+                return (
+                    <div>
+                        <div className="roomTitle-box">{t}</div>
+                    </div>
+                );
+            })}
       </div>
     </div>
   )};
