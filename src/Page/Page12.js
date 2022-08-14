@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import '../css/Page12.css'
 import axios from "axios";
-export default function Page12 ({token, room_id}) { // token, room_id는 Props로 받아온다고 가정 {token, room_id}
+export default function Page12 () { // token, room_id는 Props로 받아온다고 가정 {token, room_id}
 
-    const token = token
-    const room_id = room_id;
+    // const token = token
+    // const room_id = room_id;
 
     // Test용 -> 잘 되는거 확인 완료
-    // const token = 'ca1fd0e3be8a4178385dc8e4f665b5663dfb4481'
-    // const room_id = 8;
+    const token = '2b78c5cf37d68b3ab34ec0ad54135dd03a07e192'
+    const room_id = 1
     
     const [content, setContent] = useState('')
     const contentHandler = (e) => {
