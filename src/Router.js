@@ -37,7 +37,7 @@ const Router = ({ token, setToken }) => {
         element={<RoomRulePage token={token} setToken={setToken} />}
       />
       <Route
-        path="/myrooms"
+        path="/myrooms/:room_id"
         element={<RoomMainPage token={token} setToken={setToken} />}
       />
       <Route

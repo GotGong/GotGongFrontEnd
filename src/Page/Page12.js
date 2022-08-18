@@ -10,6 +10,7 @@ export default function Page12 () { // token, room_id는 Props로 받아온다�
     // Test용 -> 잘 되는거 확인 완료
     const token = '2b78c5cf37d68b3ab34ec0ad54135dd03a07e192'
     const room_id = 1
+
     
     const [content, setContent] = useState('')
     const contentHandler = (e) => {

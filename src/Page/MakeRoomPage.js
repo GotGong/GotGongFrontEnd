@@ -1,11 +1,12 @@
-import React, {useState } from 'react';
+import React, {useState, UseNavigate } from 'react';
 import { Link } from "react-router-dom";
 // import makeRoomAPI from '../API/makeRoomAPI';
 import 'react-datepicker/dist/react-datepicker.css';
 import MakeRoomStyle from '../css/MakeRoomStyle.css'
 import DatePicker from "react-datepicker";
 import axios from 'axios';
-
+//import $ from 'jquery';
+import { Navigate } from 'react-router-dom';
 
 
 function leftPad(value) {
@@ -33,6 +34,8 @@ function MakeRoomPage( {token} ) {
     let [roomId, setRoomId] = useState(0);
     let [roomCode, setRoomCode] = useState('');
     let [entryfee, setEntryfee] = useState(0);
+
+    const navigate = UseNavigate();
 
     const makeRoom = ()  => {
 
@@ -71,6 +74,7 @@ function MakeRoomPage( {token} ) {
                 setRoomCode(roomCode = response.data.room_code);
                 console.log(roomId);
                 console.log(roomCode);
+                navigate('/room');
             }
             else 
                 alert('방 만들기 실패');
