@@ -5,7 +5,8 @@ import "../css/RoomMainStyle.css";
 
 const RoomMainPage = () => {
   const params = useParams();
-  var num = params.room_id; //클릭된 room_id 변수 여기 저장됨
+  //클릭된 room_id 변수 여기 저장됨
+  var num = params.room_id; 
 
   const colorList = ["#FF8D8D", "#90FF8D", "#FF8DF4", "#FCFF64", "#95CCFF"];
   const randomIndex = Math.floor(Math.random() * colorList.length);
@@ -17,7 +18,6 @@ const RoomMainPage = () => {
   const [roomList, setRoomList] = useState([]);
   const [usersList, setUsersList] = useState([]);
 
-  const [thisWeek, setThisWeek] = useState(0);
 
   useEffect(() => {
     axios
