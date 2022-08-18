@@ -2,50 +2,45 @@ import React, { useMemo, useEffect, useState, useCallback } from "react";
 import { Link } from "react-router-dom";
 import "../css/RoomHomeStyle.css";
 import axios from "axios";
+import RoomCodeEnterModal from "./RoomCodeEnterModal.js";
+import Modal from "./Modal.js";
 
+function RoomHomePage() {
+  const colorList = ["#FF8D8D", "#90FF8D", "#FF8DF4", "#FCFF64", "#95CCFF"];
+  const randomIndex = Math.floor(Math.random() * colorList.length);
+  const randomColor = colorList[randomIndex];
 
-function RoomHomePage({token}) {
+  const token = localStorage.getItem("token");
 
-    
-    // useEffect(() => {
-    //     // 룸리스트 조회, 보이기
-    //     console.log('useEffect 실행');
-    //     showRoomListAPI();
-    //     },[]);
+  const [roomId, setRoomId] = useState(0);
+  const [roomList, setRoomList] = useState([]);
 
-    const [roomId, setRoomId] = useState(0);
-    const [roomList, setRoomList] = useState([]);
-    
-
-    useEffect(()=> {    
-        axios.get(`http://localhost:8000/room/myroomlist/`,
-            { headers: {
-                Authorization: `Token ${token}`
-                }
-            }
-        )
-        .then((response) => {
-        // const roomTitle = [];
-        console.log('api 호출 성공');
-        console.log(response.data);
-        console.log(response.data.room_count);
-        for(let i=0;i<response.data.room_count;i++){
-            roomList.push(response.data.my_room_list[i].title);
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8000/room/myroomlist/`, {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      })
+      .then((response) => {
+        setRoomList([]);
+        for (let i = 0; i < response.data.room_count; i++) {
+          roomList.push(response.data.my_room_list[i].title);
         }
         setRoomList(roomList);
-        console.log(roomList)
-        })
-        .catch(function (error) {
-            console.log(token);
-            console.error(error.response.data); 
-        });
-        
-    },);
-    // },[]);
+        console.log(roomList);
+      })
+      .catch(function (error) {
+        console.log(token);
+        console.error(error.response.data);
+      });
+  }, []);
 
-    const roomEnterAPI = useCallback(() => {
-        setRoomId()
-        axios.post(`http://localhost:8000/room/enter/`,
+  const roomEnterAPI = useCallback(() => {
+    setRoomId();
+    axios
+      .post(
+        `http://localhost:8000/room/enter/`,
         {
           room_id: roomId,
         },
@@ -67,26 +62,47 @@ function RoomHomePage({token}) {
       });
   });
 
+  const [modalOpen, setModalOpen] = useState(false);
+  const openModal = () => {
+    setModalOpen(true);
+  };
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
   return (
     <div className="RoomPageContainer">
-      <div className="button-box">
-            <Link to="/mkroom">
-              <button className="mkroomBtn" >방 만들기</button>
-            </Link>
-            <Link to="/enterbycode">
-              <button className="enterBtn">참여하기</button>
-            </Link>
-      </div>
-      <div className="showRoomList">
-        {roomList.map((t)=> {
-                return (
-                    <div>
-                        <div className="roomTitle-box">{t}</div>
-                    </div>
-                );
-            })}
+      <div className="RoomHome">
+        <div className="button-box">
+          <Link to="/mkroom">
+            <button className="mkroomBtn">방 만들기</button>
+          </Link>
+          <button className="enterBtn" onClick={openModal}>
+            참여하기
+          </button>
+          {modalOpen && (
+            <Modal closeModal={() => setModalOpen(!modalOpen)}>
+              <RoomCodeEnterModal />
+            </Modal>
+          )}
+        </div>
+        <div className="showRoomList">
+          {roomList.map((t) => {
+            return (
+              <div>
+                <div
+                  style={{ backgroundColor: randomColor }}
+                  className="roomTitle-box"
+                >
+                  {t}
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
-  )};
+  );
+}
 
 export default RoomHomePage;

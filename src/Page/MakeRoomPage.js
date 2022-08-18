@@ -1,10 +1,11 @@
 import React, {useState } from 'react';
+import { Link } from "react-router-dom";
 // import makeRoomAPI from '../API/makeRoomAPI';
 import 'react-datepicker/dist/react-datepicker.css';
 import MakeRoomStyle from '../css/MakeRoomStyle.css'
 import DatePicker from "react-datepicker";
 import axios from 'axios';
-//import $ from 'jquery';
+
 
 
 function leftPad(value) {
@@ -154,11 +155,13 @@ function MakeRoomPage( {token} ) {
 
 
     return (
-        <div className="RoomPageContainer">
-            <div class="field">
+        <div className="MakeRoomPageContainer">
+            <div className="field">
             <div id='step0'>
-                <h1>참가비는 2만원입니다.</h1>
-                <button onClick={goStep1}>ok</button>
+                <p>이 스터디방의 참가비는 20000원입니다.</p>
+                <p>방장의 계좌로 20000원을 송금해주세요.</p>
+
+                <button onClick={goStep1}>알겠습니다</button>
             </div>
             <div id='step1'>
                     <div className='options'>
@@ -189,11 +192,10 @@ function MakeRoomPage( {token} ) {
                     </button>  
             </div>
             <div id='step2'>
-            <label>스터디방 마감일(일단 주 단위로 선택해주세요.)</label>
+            <label>스터디방 일정을 설정하세요</label>
                 <div className='options'> 
-                    <label>스터디방 일정</label>
                     <DatePicker 
-                        id="input-box"
+                        id="select-box"
                         selected={targetTime}
                         dateFormat="yyyy-MM-dd"
                         minDate={new Date()} 
@@ -213,17 +215,19 @@ function MakeRoomPage( {token} ) {
                     <button 
                         className='rule'
                         onClick={() => {setRuleNum(ruleNum=0)}}>
-                            룰1
+                            1등 200%, 2~5등 100%, 6등 0% 환급
                     </button>
                     <button 
                         className='rule'
                         onClick={() => {setRuleNum(ruleNum=1)}}>
-                            룰2
+                            1등 180%, 2~5등 90%, 6등 60% 환급
                     </button>
                 </div>   
-                    <button className="mkRoomBtn" onClick={makeRoom}> 
-                            방 만들기
-                    </button>
+                    <Link to='/myrooms'>
+                        <button className="mkRoomBtn" onClick={makeRoom}> 
+                                방 만들기
+                        </button>
+                    </Link>
             </div>
             </div>
         </div>
