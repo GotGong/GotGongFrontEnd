@@ -1,8 +1,13 @@
 import React, {useState, useEffect} from "react";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import "../css/RoomMainStyle.css";
 
 const RoomMainPage = () => {
+  const params = useParams();
+  //클릭된 room_id 변수 여기 저장됨
+  var num = params.room_id; 
+
   const colorList = ["#FF8D8D", "#90FF8D", "#FF8DF4", "#FCFF64", "#95CCFF"];
   const randomIndex = Math.floor(Math.random() * colorList.length);
   const randomColor = colorList[randomIndex];
@@ -13,7 +18,6 @@ const RoomMainPage = () => {
   const [roomList, setRoomList] = useState([]);
   const [usersList, setUsersList] = useState([]);
 
-  const [thisWeek, setThisWeek] = useState(0);
 
   useEffect(() => {
     axios
@@ -77,6 +81,7 @@ const RoomMainPage = () => {
 
   return (
     <div className = "All">
+      <h1>{num}번 방의 RoomMainPage</h1>
     <div className="RoomMainContainer">
       <div className="RoomList">
       {roomList}
@@ -123,9 +128,9 @@ const RoomMainPage = () => {
         <div className="QnA">
         QnA
         </div>
+      </div>
     </div>
-    </div>
-  );
-};
+    );
+}
 
 export default RoomMainPage;
