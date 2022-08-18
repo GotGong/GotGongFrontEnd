@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import '../css/Page12.css'
 import axios from "axios";
+import { Link } from "react-router-dom";
 export default function Page12 () { // token, room_id는 Props로 받아온다고 가정 {token, room_id}
 
     // const token = token
@@ -101,7 +102,9 @@ export default function Page12 () { // token, room_id는 Props로 받아온다�
                     </div>
                 </div>
                 <div style={{display:'grid', justifyItems: 'center'}}>
-                <button onClick={postPlan}>새 계획 작성하기</button>
+                <Link to='/9'>
+                    <button onClick={postPlan}>새 계획 작성하기</button>
+                </Link>
                 </div>
             </div>
         </div>
