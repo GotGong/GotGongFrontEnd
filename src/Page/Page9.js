@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react"
 import axios from "axios";
-import { MdOutlineCheckBoxOutlineBlank, MdOutlineCheckBox } from "react-icons/md";
+import '../css/Page9.css'
+import { AiFillCheckSquare, AiOutlineBorder, AiOutlineFileText } from "react-icons/ai";
+import { BiDislike } from "react-icons/bi";
+import { resolvePath } from "react-router-dom";
 
 export default function Page9 () { // token, room_id는 Props로 받아온다고 가정 {token, user_id, room_id}
 
@@ -9,9 +12,9 @@ export default function Page9 () { // token, room_id는 Props로 받아온다고
     // const room_id = room_id
 
     // Test용 변수
-    const token = '2b78c5cf37d68b3ab34ec0ad54135dd03a07e192'
+    const token = 'b6b8b370d7c6774ae6d776e74565e3a39178f74a'
     const user_id = 1
-    const room_id = 1
+    const room_id = 9
     
     // useState
     // State를 만드는 함수
@@ -19,11 +22,14 @@ export default function Page9 () { // token, room_id는 Props로 받아온다고
     // 그러나 State가 변할때 페이지가 다시 렌더링 된다 => 즉 중요한 변수는 다 State이다
     // => 꼭 set{State명}으로면 변수값이 바뀐다
     // useState와 useEffect만 알면 프론트는 다 할 수 있으니 공부를 해보도록 하자
-    const [planCategoriesNum, setPlanCategoriesNum] = useState(8)
+    const [planDislike, setPlanDislike] = useState([])
+    const [planCategoriesNum, setPlanCategoriesNum] = useState(0)
     const [contents, setContents] = useState([])
-    const [detailContents, setDetailContents] = useState([{'content': [], 'check': []}])
+    const [detailContents, setDetailContents] = useState([{'content': [], 'self_check': []}])
     const [currentPick, setCurrentPick] = useState(0)
     const [rerenderingVar, setRerenderingVar] = useState(true)
+    const [nowPlan, setNowPlan] = useState(0)
+    //const [planStatus, setPlanStatus] = useState(true)
 
     useEffect(() => {
         // 통신 기본
@@ -35,83 +41,113 @@ export default function Page9 () { // token, room_id는 Props로 받아온다고
         {headers: {
             Authorization: `Token ${token}`
         }})
-        .then((response) => {console.log(response)})
-
-        setContents([
-            '1주차 Content', 
-            '2주차 Content', 
-            '3주차 Content', 
-            '4주차 Content', 
-            '5주차 Content', 
-            '6주차 Content', 
-            '7주차 Content', 
-            '8주차 Content',
-        ])
-        setDetailContents([
-            {'content': ['1주차 DetailPlan Content - 1', '1주차 DetailPlan Content - 2'], 'check': [true, false]},
-            {'content': ['2주차 DetailPlan Content - 1', '2주차 DetailPlan Content - 2'], 'check': [true, false]},
-            {'content': ['3주차 DetailPlan Content - 1', '3주차 DetailPlan Content - 2'], 'check': [true, false]},
-            {'content': ['4주차 DetailPlan Content - 1', '4주차 DetailPlan Content - 2'], 'check': [true, false]},
-            {'content': ['5주차 DetailPlan Content - 1', '5주차 DetailPlan Content - 2'], 'check': [true, false]},
-            {'content': ['6주차 DetailPlan Content - 1', '6주차 DetailPlan Content - 2'], 'check': [true, false]},
-            {'content': ['7주차 DetailPlan Content - 1', '7주차 DetailPlan Content - 2'], 'check': [true, false]},
-            {'content': ['8주차 DetailPlan Content - 1', '8주차 DetailPlan Content - 2'], 'check': [true, false]},
-        ])
+        .then((response) => {
+            setPlanCategoriesNum(response.data.entire_week/7)
+            var temp = response.data.plan_info;
+            setContents(temp.map(item => item.content))
+            setPlanDislike(temp.map(item => item.dislike_check))
+            const d_plan = []
+            for(let i=0; i<response.data.plan_info.length; i++) {
+                const dic = {}
+                var detail_plan = response.data.plan_info[i].detail_plans;
+                dic['content'] = detail_plan.map(item => item.content)
+                dic['self_check'] = detail_plan.map(item => item.self_check)
+                d_plan.push(dic)
+            }
+            setDetailContents(d_plan)
+            for(let i=0; i<response.data.plan_info.length; i++) {
+                if (temp[i].plan_status === true) {
+                        setNowPlan(i)
+                }
+            }
+        })
     }, [])
 
     const planCategories = []
     for(let i = 0; i < planCategoriesNum; i++) {
-        planCategories.push(
-            <div style={{width: '100%', height: '60px', borderRadius: '20px', display: 'grid', justifyItems: 'center', alignItems: 'center'}} onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#BFBFBF'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FFFFFF'}>
-                <text style={{fontSize: '3vh', userSelect: 'none'}} onClick={() => setCurrentPick(i)}>#준호의 {i+ 1}주차 계획</text>
-            </div>
-        )
+        if (i < detailContents.length) {
+            if (i === nowPlan) {
+                planCategories.push(
+                    <div style={{width: '100%', height: '80px', borderRadius: '20px', display: 'grid',  alignItems: 'center', justifyItems: 'center'}} onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#BFBFBF'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FFFFFF'}>
+                        <text id="now_plan" style={{fontSize: '3vh', userSelect: 'none'}} onClick={() => setCurrentPick(i)}>#준호의 {i+ 1}주차 계획</text>
+                    </div>
+                )
+            }
+            else {
+                planCategories.push(
+                    <div style={{width: '100%', height: '80px', borderRadius: '20px', display: 'grid', alignItems: 'center', justifyItems: 'center'}} onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#BFBFBF'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FFFFFF'}>
+                        <text id="user_plan" style={{fontSize: '3vh', userSelect: 'none'}} onClick={() => setCurrentPick(i)}>#준호의 {i+ 1}주차 계획</text>
+                    </div>
+                )
+            }
+        }
+        else {
+            planCategories.push(
+                <div style={{width: '100%', height: '80px', borderRadius: '20px', display: 'grid', alignItems: 'center', justifyItems: 'center'}} onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#BFBFBF'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FFFFFF'}>
+                    <text id="later_plan" style={{fontSize: '3vh', userSelect: 'none'}} onClick={() => setCurrentPick(i)}>#준호의 {i+ 1}주차 계획</text>
+                </div>
+            )
+        }
     }
 
     const detailContentsVar = []
-    for(let i = 0; i < detailContents[currentPick].content.length; i++) {
-        detailContentsVar.push(
-            <div style={{width: '100%', height: '50px', display: 'grid', gridTemplateColumns: '1fr 9fr'}}>
-                <div style={{display: 'grid', justifyItems: 'center', alignItems: 'center'}}>
-                    {detailContents[currentPick].check[i] ? 
-                    <MdOutlineCheckBox/> : 
-                    <MdOutlineCheckBoxOutlineBlank/>}
+    for (let i = 0; i<detailContents.length; i++) {
+        const temp = []
+        for (let j = 0; j < detailContents[i].content.length; j++) {
+            temp.push(
+                <div id='content' style={{display: 'grid', gridTemplateColumns: '1fr 9fr'}}>
+                    <div id='details' style={{display:'grid'}}>   
+                        <div>
+                            <text style={{fontSize: '3vh'}}> 
+                            {detailContents[i].self_check[j] ? 
+                            <AiFillCheckSquare id='icon' size="80px"/> : <AiOutlineBorder id='icon' size="80px"/>} </text>
+                        </div>
+                        <div style={{display:'grid', alignContent: "start", paddingTop: "15px"}}>
+                            <text style={{fontSize: '3vh'}}>{detailContents[i].content[j]}</text>
+                        </div>
+                    </div> 
                 </div>
-                <div style={{display: 'grid', alignItems: 'center'}}>
-                    <text style={{fontSize: '3vh'}}>{detailContents[currentPick].content[i]}</text>
-                </div> 
-            </div>
-        )
+            )
+        }
+        detailContentsVar.push(temp)
     }
 
     return (
         <div style={{position: 'fixed', backgroundColor: '#F5F5F5', top: '19%', left: '0%', width: '100%', height: '81%'}}>
             <div style={{position: 'fixed', top: '23%', left: '3.5%', width: '93%', height: '72%', display: 'grid', gridTemplateColumns: '22fr 78fr'}}>
-                <div style={{display: 'grid', gridTemplateRows: '14fr 86fr'}}>
-                    <div style={{backgroundColor: '#D9D9D9', borderTopLeftRadius: '20px', display: 'grid', alignItems: 'center', justifyContent: 'center'}}>
+                <div style={{height: '982px', display: 'grid', gridTemplateRows: '14fr, 86fr'}}>
+                    <div style={{backgroundColor: '#D9D9D9', height: "150px", borderTopLeftRadius: '20px', display: 'grid', alignItems: 'center', justifyContent: 'center'}}>
                         <text style={{fontSize: '3vh'}}>준호의 계획</text>
                     </div>
-                    <div style={{backgroundColor: '#FFFFFF', borderBottomLeftRadius: '20px', display: 'grid', overflow: 'scroll', overflowX: 'hidden', overflowY: 'auto'}}>
+                    <div style={{overflow: 'scroll', height: "832px",backgroundColor: '#FFFFFF', borderBottomLeftRadius: '20px', display: 'grid', gap: "10px", alignContent: 'start'}}>
                         {planCategories}
                     </div>
                 </div>
-                <div style={{backgroundColor: '#BFBFBF', borderTopRightRadius: '20px', borderBottomRightRadius: '20px', display: 'grid', alignItems: 'center', justifyItems: 'center'}}>
-                    <div style={{backgroundColor: 'white', width: '95%', height: '93%', borderRadius: '20px', display: 'grid', gridTemplateColumns: '63fr 37fr'}}>
-                        <div style={{display: 'grid', gridTemplateColumns: '1fr 8fr 1fr'}}> 
+                <div style={{backgroundColor: '#BFBFBF', height: '982px', borderTopRightRadius: '20px', borderBottomRightRadius: '20px', display: 'grid', alignItems: 'center', justifyItems: 'center'}}>
+                    <div style={{backgroundColor: 'white', width: '95%', height: '920px', borderRadius: '20px', display: 'grid', gridTemplateColumns: '63fr 37fr'}}>
+                        <div style={{display: 'grid', gridTemplateColumns: '1fr 8fr 1fr', overflow:'auto'}}> 
                             <div style={{borderTopLeftRadius: '20px', borderBottomLeftRadius: '20px'}}/>
-                            <div style={{display: 'grid', gridTemplateRows: '1fr 2fr 7fr'}}>
+                            <div style={{alignContent: "start", display: 'grid', gridTemplateRows: '0.5fr 1.5fr 8fr'}}>
                                 <div/>
-                                <div>
-                                    <text style={{fontSize: '5vh'}}>{contents[currentPick]}</text>
+                                <div style={{height: "50px", display: 'grid'}}>
+                                    <text style={{fontSize: '3vh'}}> {<AiOutlineFileText id='icon' size='70px'/>} {contents[currentPick]}</text>
                                 </div>
-                                <div>
-                                    {detailContentsVar}
+                                <div style={{display: 'grid', height: "870px", alignContent: 'start'}}>
+                                    {detailContentsVar[currentPick]}
                                 </div>
                             </div>
                             <div/>
-                        </div>   
-                        <div style={{backgroundColor: '#D9D9D9', borderTopRightRadius: '20px', borderBottomRightRadius: '20px'}}>
-
+                        </div>
+                        <div style={{backgroundColor: '#D9D9D9', height: '920px', display: 'grid', gridTemplateRows: '1.8fr 6.4fr 1.8fr', display: 'grid', alignItems: 'center', justifyContent: 'center', overflow:'hidden'}}>
+                            <div style={{display: 'grid', alignItems: 'center', justifyContent: 'center'}}>
+                                <text style={{fontSize: '3vh'}}>친구들의 평가</text>
+                            </div>
+                            <div style={{display: 'grid', alignSelf: 'center', justifyContent: 'space-evenly'}}>
+                                <text style={{fontSize: '3.5vh'}}>{<BiDislike size="90px"/>} {planDislike[currentPick]} </text>
+                            </div>
+                            <div id='dislike_button' style={{width: '100%', backgroundColor: 'black', display: 'grid', alignItems: 'center', justifyContent: 'center'}}>
+                                <text style={{fontSize: '3vh', color: 'white'}}><BiDislike size="90px" color="white"/></text>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -1,0 +1,29 @@
+#user_plan{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+#later_plan{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color:#BFBFBF
+}
+#now_plan{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-weight: bold;
+}
+#dislike_button{
+    padding: 30px 130px 30px 130px;
+    place-self: center center
+}
+#icon{
+    color:#BFBFBF
+}
+#content{
+    justify-items: "start";
+}
+#details{
+    width: 200px;
+    height: 150px;
+    grid-template-columns: repeat(auto-fill, minmax(50%, auto));
+}
