@@ -5,7 +5,7 @@ import "../css/RoomMainStyle.css";
 
 const RoomMainPage = () => {
   const params = useParams();
-  var roomId = params.room_id;
+  var num = params.room_id; //클릭된 room_id 변수 여기 저장됨
 
   const colorList = ["#FF8D8D", "#90FF8D", "#FF8DF4", "#FCFF64", "#95CCFF"];
   const randomIndex = Math.floor(Math.random() * colorList.length);
@@ -81,7 +81,7 @@ const RoomMainPage = () => {
 
   return (
     <div className = "All">
-      <h1>{roomId}번 방의 RoomMainPage</h1>
+      <h1>{num}번 방의 RoomMainPage</h1>
     <div className="RoomMainContainer">
       <div className="RoomList">
       {roomList}
