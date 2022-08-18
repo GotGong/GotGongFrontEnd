@@ -1,28 +1,162 @@
-
 .field  {
-    background:#fff;
-    border:1px solid #222;
-    border-radius: 5px;
-    padding: 20px;
-    width: 400px;	
-    margin:30px auto;
+    background-color: rgb(255, 255, 255);
 }
 
-#form ul li  {
-    line-height: 30px;
-    list-style: none;
-    padding: 5px 10px;
-    margin-bottom: 2px;
+.MakeRoomPageContainer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
 }
-#form li  {
+
+.mkRoomBtn {
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 10px;
+
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%, 0);
+    
+
+    color: white;
+    font-size: 30px;
+    background-color: black;
+
+    display: block;
+    letter-spacing: 1px;
+
+}
+
+.cntinuBtn {
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 22px;
+
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%, 0);
+    
+
+    color: white;
+    font-size: 30px;
+    background-color: black;
+
+    display: block;
+    letter-spacing: 1px;
+
+    
+
+}
+
+
+
+.options {
+    display: block;
+    text-align: left;
+
+    margin-top: 20px;
+
+    /* background-color: bisque; */
+}
+
+
+.choice-rule {
+    text-align: center;
+}
+.rule:hover {
+    border: 2px solid black;
+}
+
+.rule {
+    background-color: rgb(255, 255, 255);
+    border: 2px solid #DBDBDB;;
+
+    width: 550px;
+    height: 80px;
+
+    color:rgb(0, 0, 0);
+
+    border-radius: 20px;
+    margin:5px;
     margin-top: 10px;
 }
 
-.mkRoomButton {
-    border: 1px solid #222;
-      border-radius: 20px;
-      display: block;
-      letter-spacing: 1px;
-      margin: auto;
-      padding: 7px 25px;
+.MakeRoomPageContainer button {
+    background: #FFFFFF;
+    border: 3px solid #000000;
+    border-radius: 22px;
+    color: #000000;
+    margin-top:  20px;
 }
+
+.MakeRoomPageContainer button:hover {
+    background-color: #000000;
+    color: #FFFFFF;
+}
+
+h2{
+    font-size: 32px;
+}
+
+label {
+    font-size: 28px;
+}
+
+#step0 {
+    text-align: center;
+    font-size: 30px;
+}
+
+#step1 {
+    text-align: center;
+}
+
+#step1 {
+    text-align: center;
+    display: none;
+}
+
+#step2 {
+    display: none;
+}
+
+#step3 {
+    display: none;
+}
+
+
+#input-box {
+
+    width: 350px;
+    height: 80px;
+
+    margin: 10px;
+
+    border: 3px solid #000000;
+    border-radius: 20px;
+
+    background-color: white;
+
+    font-size: 35px;
+    
+}
+
+.options ::placeholder {
+    color: #000;
+    font-size: 35px;
+}
+
+#select-box {
+    width: 360px;
+    height: 90px;
+
+    margin: 10px;
+
+    border: 3px solid #000000;
+    border-radius: 20px;
+
+    background-color: white;
+
+    font-size: 35px;
+}
+
+

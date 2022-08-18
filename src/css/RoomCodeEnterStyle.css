@@ -1,0 +1,29 @@
+.RoomCodeEnterPageContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+input {
+  width: 492px;
+  height: 97px;
+  font-size: 25px;
+  color: #000000;
+  background: #ededed;
+  border-radius: 22px;
+  border: none;
+  margin-bottom: 30px;
+}
+
+button {
+  width: 319px;
+  height: 97px;
+  font-size: 30px;
+  color: #ffffff;
+  background: #000000;
+  border-radius: 22px;
+  border: none;
+    
+}

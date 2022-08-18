@@ -1,122 +1,108 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useMemo, useEffect, useState, useCallback } from "react";
 import { Link } from "react-router-dom";
-import "../css/RoomHomeStyle.css"
-import axios from 'axios';
+import "../css/RoomHomeStyle.css";
+import axios from "axios";
+import RoomCodeEnterModal from "./RoomCodeEnterModal.js";
+import Modal from "./Modal.js";
 
+function RoomHomePage() {
+  const colorList = ["#FF8D8D", "#90FF8D", "#FF8DF4", "#FCFF64", "#95CCFF"];
+  const randomIndex = Math.floor(Math.random() * colorList.length);
+  const randomColor = colorList[randomIndex];
 
-function RoomHomePage({token}) {
-    const [roomId, setRoomId] = useState(0);
+  const token = localStorage.getItem("token");
 
-    const showRoomListAPI = useCallback(() => {
-        axios.get(`http://localhost:8000/room/myroomlist/`,
-            { headers: {
-                Authorization:`Token ${token}`,
-                }
-            }
-        )
-        .then((response) => {
-        console.log(response.data);
-          const roomTitle = [];
-                for(let i =0; i < response.data.length; i++)
-                {
-                    console.log('for문');
-                    roomTitle.push(
-                        <div key={i}>
-                            {response[0][i].title}
-                        </div>
-                    )
-                }
-        })
-        .catch(function (error) {
-            console.log(token);
-            console.error(error.response.data); 
-        });
-    });
+  const [roomId, setRoomId] = useState(0);
+  const [roomList, setRoomList] = useState([]);
 
-    // const signUpAPI = async (userid, password, username, email) => {
-    //     let token = ''
-    //     await axios.post("http://localhost:8000/user/signup/", {
-    //       userid: userid,
-    //       password: password,
-    //       username: username,
-    //       email: email,
-    //     })
-    //     .then((response) => {
-    //       token = response.data.Token;
-    //     })
-    //     .catch(function (error) {
-    //       console.log(error);
-    //     });
-    //     return token;
-    //   }
-
-    const roomEnterAPI = useCallback(() => {
-        setRoomId()
-        axios.post(`http://localhost:8000/room/enter/`,
-        {
-            room_id:roomId,
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8000/room/myroomlist/`, {
+        headers: {
+          Authorization: `Token ${token}`,
         },
-        { headers: {
-            Authorization:`Token ${token}`,
-            }}
-        )
-        .then((response) => {
-            console.log('res옴');
-            console.log(response.data);
-            setRoomId(roomId);
-        })
-        .catch(function (error) {
-            console.log('res안옴');
-            console.log(token);
-            console.error(error.response.data); 
-        });
-    });
+      })
+      .then((response) => {
+        setRoomList([]);
+        for (let i = 0; i < response.data.room_count; i++) {
+          roomList.push(response.data.my_room_list[i].title);
+        }
+        setRoomList(roomList);
+        console.log(roomList);
+      })
+      .catch(function (error) {
+        console.log(token);
+        console.error(error.response.data);
+      });
+  }, []);
 
+  const roomEnterAPI = useCallback(() => {
+    setRoomId();
+    axios
+      .post(
+        `http://localhost:8000/room/enter/`,
+        {
+          room_id: roomId,
+        },
+        {
+          headers: {
+            Authorization: `Token ${token}`,
+          },
+        }
+      )
+      .then((response) => {
+        console.log("res옴");
+        console.log(response.data);
+        setRoomId(roomId);
+      })
+      .catch(function (error) {
+        console.log("res안옴");
+        console.log(token);
+        console.error(error.response.data);
+      });
+  });
 
-    return (
-        <div>
-            <h1>RoomHomePage입니다.</h1>
-            <div className="RoomPageContainer">
-            <div>
-                <ul>
-                    <li>
-                        <Link to="/mkroom">
-                            <button>
-                            방 만들기
-                            </button>
-                        </Link>
-                    </li>
-                </ul>
-            </div>
-            <div>
-                <ul>
-                    <li>
-                        <Link to="/enterbycode">
-                            <button>
-                            참여하기
-                            </button>
-                        </Link>
-                    </li>
-                </ul>
-            </div>
-            <div>
-                <ul>
-                    <li>
-                        <h4>내가 속한 방 리스트</h4>
-                            <button onClick={showRoomListAPI}>
-                                showroomList
-                            </button>
-                        <Link to="/myrooms">
-                            <button onClick={roomEnterAPI}>
-                                roomenter
-                            </button>
-                        </Link>
-                    </li>
-                </ul>
-            </div>
+  const [modalOpen, setModalOpen] = useState(false);
+  const openModal = () => {
+    setModalOpen(true);
+  };
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
+  return (
+    <div className="RoomPageContainer">
+      <div className="RoomHome">
+        <div className="button-box">
+          <Link to="/mkroom">
+            <button className="mkroomBtn">방 만들기</button>
+          </Link>
+          <button className="enterBtn" onClick={openModal}>
+            참여하기
+          </button>
+          {modalOpen && (
+            <Modal closeModal={() => setModalOpen(!modalOpen)}>
+              <RoomCodeEnterModal />
+            </Modal>
+          )}
         </div>
+        <div className="showRoomList">
+          {roomList.map((t) => {
+            return (
+              <div>
+                <div
+                  style={{ backgroundColor: randomColor }}
+                  className="roomTitle-box"
+                >
+                  {t}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
     </div>
-    );
-};
+  );
+}
 
 export default RoomHomePage;
