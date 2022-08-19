@@ -16,6 +16,14 @@
   padding-top: 10px;
 }
 
+.header {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  top: 0;
+  padding-top: 10px;
+}
+
 .navbar2 ul{
   list-style: none;
   padding-top: 10px;
