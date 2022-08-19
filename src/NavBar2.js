@@ -32,6 +32,11 @@ const NavBar2 = ({token, setToken}) => {
         </li>
         <li>
           <Link to="/rule">
+            <span>랭킹</span>
+          </Link>
+        </li>
+        <li>
+          <Link to="/rule">
             <span>룰</span>
           </Link>
         </li>
