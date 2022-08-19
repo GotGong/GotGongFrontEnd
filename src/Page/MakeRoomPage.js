@@ -1,4 +1,4 @@
-import React, {useState, UseNavigate } from 'react';
+import React, {useState, useNavigate } from 'react';
 import { Link } from "react-router-dom";
 // import makeRoomAPI from '../API/makeRoomAPI';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -35,19 +35,10 @@ function MakeRoomPage( {token} ) {
     let [roomCode, setRoomCode] = useState('');
     let [entryfee, setEntryfee] = useState(0);
 
-    const navigate = UseNavigate();
 
     const makeRoom = ()  => {
 
         targetTime = format(targetTime);
-
-        console.log('makeroom 함수 실행됐음');
-        console.log(title);
-        console.log(targetTime);
-        console.log(maxUserNum);
-        console.log(ruleNum);
-        console.log(entryfee);
-
         
         axios.post("http://localhost:8000/room/", 
           { 
@@ -74,7 +65,7 @@ function MakeRoomPage( {token} ) {
                 setRoomCode(roomCode = response.data.room_code);
                 console.log(roomId);
                 console.log(roomCode);
-                navigate('/room');
+                //여기서 /room으로 넘어가게 해야함
             }
             else 
                 alert('방 만들기 실패');
@@ -227,11 +218,12 @@ function MakeRoomPage( {token} ) {
                             1등 180%, 2~5등 90%, 6등 60% 환급
                     </button>
                 </div>   
-                    <Link to='/myrooms'>
-                        <button className="mkRoomBtn" onClick={makeRoom}> 
+                        {/* <Link to={'/room'}> */}
+                            <button className="mkRoomBtn" onClick={makeRoom}> 
                                 방 만들기
-                        </button>
-                    </Link>
+                            </button>
+                        {/* </Link> */}
+                        
             </div>
             </div>
         </div>
