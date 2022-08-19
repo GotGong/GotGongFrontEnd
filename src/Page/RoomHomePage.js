@@ -10,11 +10,55 @@ import NavBar1 from "../NavBar1.js";
 function RoomHomePage() {
     const colorList = ['#FF8D8D', '#90FF8D', '#FF8DF4', '#FCFF64', '#95CCFF' ];
     const randomIndex = Math.floor(Math.random() * colorList.length);
-    const randomColor = colorList[randomIndex];
+    var randomColor = []
+    for(let i = 0; i < 5; i++){
+      var col = colorList.splice(Math.floor(Math.random() * 5), 1)[0]
+      if (col != undefined)
+        randomColor.push(col)
+      else
+        i -= 1
+    }
+    
+    console.log(randomColor)
+
+    // const randomColor = colorList[randomIndex];
 
     const token = localStorage.getItem('token');
 
     const [roomData, setRoomData] = useState([]);
+
+    const [roomCount, setRoomCount] = useState(0);
+
+    console.log(roomCount)
+
+    const rooms = []
+
+//  기존
+//  roomData.map((r) =>{
+//     return (
+//         <div key={r.id} >
+//             <Link to={`/myrooms/${r.id}`}>
+//                 <button 
+//                 className="roomTitle-box" 
+//                 style={{backgroundColor:randomColor}}
+//                  >{r.title}</button>
+//             </Link>
+//         </div>
+//     );
+//  })
+    for(let i = 0; i < roomCount; i++) {
+      rooms.push(
+        <div key={roomData[i].id} >
+          <Link to={`/myrooms/${roomData[i].id}`}>
+              <button 
+              className="roomTitle-box" 
+              style={{backgroundColor:randomColor[i]}}
+              >{roomData[i].title}</button>
+          </Link>
+        </div>
+      )
+    }
+
 
     useEffect(()=> {   
         axios.get(`http://localhost:8000/room/myroomlist/`,
@@ -27,6 +71,7 @@ function RoomHomePage() {
         setRoomData([]);
         console.log(response.data.my_room_list);
         setRoomData(response.data.my_room_list);
+        setRoomCount(response.data.my_room_list.length < 5 ? response.data.my_room_list.length : 5)
         })
         .catch(function (error) {
             console.log(token);
@@ -89,18 +134,7 @@ function RoomHomePage() {
         </div>
         <div className="showRoomList">
         {
-            roomData.map((r) =>{
-                return (
-                    <div key={r.id} >
-                        <Link to={`/myrooms/${r.id}`}>
-                            <button 
-                            className="roomTitle-box" 
-                            style={{backgroundColor:randomColor}}
-                             >{r.title}</button>
-                        </Link>
-                    </div>
-                );
-            })
+          rooms
         }
         </div>
       </div>

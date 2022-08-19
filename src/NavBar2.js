@@ -32,12 +32,22 @@ const NavBar2 = ({token, setToken}) => {
         </li>
         <li>
           <Link to="/rule">
+            <span>랭킹</span>
+          </Link>
+        </li>
+        <li>
+          <Link to="/rule">
             <span>룰</span>
           </Link>
         </li>
         <li>
           <Link to="/plans">
             <span>환급 비용 계산</span>
+          </Link>
+        </li>
+        <li>
+          <Link to="/9">
+            <span>계획</span>
           </Link>
         </li>
       </ul>

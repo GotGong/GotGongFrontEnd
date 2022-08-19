@@ -13,8 +13,9 @@ export default function Page9 () { // token, room_id는 Props로 받아온다고
     // const room_id = room_id
 
     // Test용 변수
-    const token = '00946a56840cfd2f1ef4c4dcac8c60a2fbc31fab'
-    const user_id = 3
+
+    const token = 'a55f564e0cfb4893fa280ac0956f26f6d2fedea1'
+    const user_id = 1
     const room_id = 1
     
     // useState
