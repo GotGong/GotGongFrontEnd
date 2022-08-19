@@ -11,7 +11,6 @@ function RoomMainPage() {
 
   const colorList = ["#FF8D8D", "#90FF8D", "#FF8DF4", "#FCFF64", "#95CCFF"];
   const randomIndex = Math.floor(Math.random() * colorList.length);
-  const randomColor = colorList[randomIndex];
 
   const token = localStorage.getItem("token");
 
@@ -19,6 +18,29 @@ function RoomMainPage() {
   const [roomList, setRoomList] = useState([]);
   const [usersList, setUsersList] = useState([]);
 
+  const [roomCount, setRoomCount] = useState(0);
+  var randomColor = []
+  for(let i = 0; i < 5; i++){
+    var col = colorList.splice(Math.floor(Math.random() * 5), 1)[0]
+    if (col != undefined)
+      randomColor.push(col)
+    else
+      i -= 1
+  }
+  console.log(roomCount)
+  const rooms = []
+  for(let i = 0; i < roomCount; i++) {
+    rooms.push(
+      <div key={roomList[i].id} >
+        {/* <Link to={`/myrooms/${roomList[i].id}`}> */}
+            <button 
+            className="roomTitle-box" 
+            style={{backgroundColor:randomColor[i]}}
+            >{roomList[i].title}</button>
+        {/* </Link> */}
+      </div>
+    )
+  }
   useEffect(() => {
     axios
       .get(`http://localhost:8000/room/myroomlist/`, {
@@ -32,6 +54,7 @@ function RoomMainPage() {
         //   roomList.push(response.data.my_room_list[i].title);
         // }
         setRoomList(response.data.my_room_list);
+        setRoomCount(response.data.my_room_list.length < 5 ? response.data.my_room_list.length : 5)
         console.log(response.data.my_room_list);
       })
       .catch(function (error) {
@@ -114,20 +137,7 @@ function RoomMainPage() {
               textAlign:'center',
             }}
           >
-            {roomList.map((r) => {
-              return (
-                <div key={r.id}>
-                  {/* <Link to={`/myrooms/${r.id}`}> */}
-                  <button
-                    className="Title-box"
-                    style={{ backgroundColor: randomColor }}
-                  >
-                    {r.title}
-                  </button>
-                  {/* </Link> */}
-                </div>
-              );
-            })}
+            {rooms}
           </div>
           <div
             className="UsersList"
