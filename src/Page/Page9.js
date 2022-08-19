@@ -8,12 +8,12 @@ import NavBar2 from "../NavBar2.js";
 
 
 export default function Page9 () { // token, room_id는 Props로 받아온다고 가정 {token, user_id, room_id}
-
     // const token = token
     // const user_id = user_id
     // const room_id = room_id
 
     // Test용 변수
+
     const token = 'a55f564e0cfb4893fa280ac0956f26f6d2fedea1'
     const user_id = 1
     const room_id = 1
@@ -32,10 +32,8 @@ export default function Page9 () { // token, room_id는 Props로 받아온다고
     const [rerender, setRerender] = useState(true)
     const [nowPlan, setNowPlan] = useState(0)
     const [planId, setPlanId] = useState(0)
+    const [username, setUsername] = useState('')
     //const [planStatus, setPlanStatus] = useState(true)
-
-    console.log(planDislike)
-    console.log(contents)
 
     useEffect(() => {
         // 통신 기본
@@ -68,6 +66,7 @@ export default function Page9 () { // token, room_id는 Props로 받아온다고
                 }
             }
             setPlanId(temp.map(item => item.id))
+            setUsername(response.data.username)
         })
     }, [])
 
@@ -93,14 +92,14 @@ export default function Page9 () { // token, room_id는 Props로 받아온다고
             if (i === nowPlan) {
                 planCategories.push(
                     <div style={{width: '100%', height: '80px', borderRadius: '20px', display: 'grid',  alignItems: 'center', justifyItems: 'center'}} onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#BFBFBF'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FFFFFF'}>
-                        <text id="now_plan" style={{fontSize: '3vh', userSelect: 'none'}} onClick={() => setCurrentPick(i)}>#준호의 {i+ 1}주차 계획</text>
+                        <text id="now_plan" style={{fontSize: '3vh', userSelect: 'none'}} onClick={() => setCurrentPick(i)}>#{username}의 {i+ 1}주차 계획</text>
                     </div>
                 )
             }
             else {
                 planCategories.push(
                     <div style={{width: '100%', height: '80px', borderRadius: '20px', display: 'grid', alignItems: 'center', justifyItems: 'center'}} onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#BFBFBF'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FFFFFF'}>
-                        <text id="user_plan" style={{fontSize: '3vh', userSelect: 'none'}} onClick={() => setCurrentPick(i)}>#준호의 {i+ 1}주차 계획</text>
+                        <text id="user_plan" style={{fontSize: '3vh', userSelect: 'none'}} onClick={() => setCurrentPick(i)}>#{username}의 {i+ 1}주차 계획</text>
                     </div>
                 )
             }
@@ -108,7 +107,7 @@ export default function Page9 () { // token, room_id는 Props로 받아온다고
         else {
             planCategories.push(
                 <div style={{width: '100%', height: '80px', borderRadius: '20px', display: 'grid', alignItems: 'center', justifyItems: 'center'}} onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#BFBFBF'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FFFFFF'}>
-                    <text id="later_plan" style={{fontSize: '3vh', userSelect: 'none'}} onClick={() => setCurrentPick(i)}>#준호의 {i+ 1}주차 계획</text>
+                    <text id="later_plan" style={{fontSize: '3vh', userSelect: 'none'}} onClick={() => setCurrentPick(i)}>#{username}의 {i+ 1}주차 계획</text>
                 </div>
             )
         }
@@ -143,7 +142,7 @@ export default function Page9 () { // token, room_id는 Props로 받아온다고
             <div style={{position: 'fixed', top: '23%', left: '3.5%', width: '93%', height: '72%', display: 'grid', gridTemplateColumns: '22fr 78fr'}}>
                 <div style={{height: '982px', display: 'grid', gridTemplateRows: '14fr, 86fr'}}>
                     <div style={{backgroundColor: '#D9D9D9', height: "150px", borderTopLeftRadius: '20px', display: 'grid', alignItems: 'center', justifyContent: 'center'}}>
-                        <text style={{fontSize: '3vh'}}>준호의 계획</text>
+                        <text style={{fontSize: '3vh'}}>{username}의 계획</text>
                     </div>
                     <div style={{overflow: 'scroll', height: "832px",backgroundColor: '#FFFFFF', borderBottomLeftRadius: '20px', display: 'grid', gap: "10px", alignContent: 'start'}}>
                         {planCategories}
@@ -172,7 +171,7 @@ export default function Page9 () { // token, room_id는 Props로 받아온다고
                                 <text style={{fontSize: '3.5vh'}}>{<BiDislike size="90px"/>} {planDislike[currentPick]} </text>
                             </div>
                             <div id='dislike_button' style={{width: '100%', backgroundColor: 'black', display: 'grid', alignItems: 'center', justifyContent: 'center'}}>
-                                <button  style={{fontSize: '3vh', color: 'white'}}><BiDislike size="90px" color="white"/></button>
+                                <button onClick={dislikeUp} style={{fontSize: '3vh', color: 'white'}}><BiDislike size="90px" color="white"/></button>
                             </div>
                         </div>
                     </div>
