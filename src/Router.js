@@ -11,6 +11,7 @@ import RoomMainPage from "./Page/RoomMainPage";
 import ShowPlanPage from './Page/ShowPlanPage';
 import Page12 from "./Page/Page12";
 import Page9 from "./Page/Page9";
+import RefundShow from "./Page/RefundShowPage";
 
 
 const Router = ({ token, setToken }) => {
@@ -53,6 +54,10 @@ const Router = ({ token, setToken }) => {
       <Route
         path="/9"
         element={<Page9/>}
+      />
+      <Route
+        path="/refund"
+        element={<RefundShow/>}
       />
     </Routes>
   );
