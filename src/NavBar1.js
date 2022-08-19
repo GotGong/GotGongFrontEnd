@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import './App.css';
 
-const NavBar = ({token, setToken}) => {
+const NavBar1 = () => {
   const navigate = useNavigate();
   const username  = localStorage.getItem('username');
+  
   const [navBar1, setNavBar1] = useState(true);
 
   const [signInOn, setSignInOn] = useState(false);
@@ -18,21 +19,24 @@ const NavBar = ({token, setToken}) => {
   // }, [token]);
 
   const resetHandler = () => {
-    setToken('');
     setSignInOn(false);
     localStorage.clear();
     navigate('/');
+  };
+
+  const navBarHandler = () => {
+    setNavBar1(!navBar1);
   };
 
   useEffect(() => {
     if (localStorage.getItem('token') !== null) {
       setSignInOn(true);
     }
-}, [token]);
+}, []);
 
   return (
     <div className="NavBarContainer">
-      {navBar1  ?
+      {/* {navBar1  ? */}
         <div className='navbar1'>
             {signInOn ?
                 <Link to="/room">
@@ -49,7 +53,7 @@ const NavBar = ({token, setToken}) => {
                 <></>
             }
         </div>
-    :
+    {/* { :
       <div className="navbar2">
       <ul>
         <li>
@@ -74,10 +78,10 @@ const NavBar = ({token, setToken}) => {
                 <></>
         }
       </div>
-  }
+}) */}
   </div>
   );
 
 };
 
-export default NavBar;
+export default NavBar1;

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import '../css/Page12.css'
 import axios from "axios";
 import { Link } from "react-router-dom";
+import NavBar2 from "../NavBar2.js";
+
 export default function Page12 () { // token, room_id는 Props로 받아온다고 가정 {token, room_id}
 
     // const token = token
@@ -73,6 +75,8 @@ export default function Page12 () { // token, room_id는 Props로 받아온다�
     }
 
     return (
+        <>
+        <NavBar2 />
         <div id="Page12-container">
             <div/>
 
@@ -109,5 +113,6 @@ export default function Page12 () { // token, room_id는 Props로 받아온다�
                 </div>
             </div>
         </div>
+        </>
     )
 }

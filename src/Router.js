@@ -1,20 +1,21 @@
-import React from "react";
+import React, {useState} from "react";
 import { Route, Routes } from "react-router-dom";
 import SignInPage from "./Page/SignInPage";
 import SignUpPage from "./Page/SignUpPage";
 import SettingPage from "./Page/SettingPage";
 import RoomHomePage from "./Page/RoomHomePage";
 import MakeRoomPage from "./Page/MakeRoomPage";
-import RoomCodeEnterPage from "./Page/RoomCodeEnterPage";
+import RoomCodeEnterModal from "./Page/RoomCodeEnterModal";
 import RoomRulePage from "./Page/RoomRulePage";
 import RoomMainPage from "./Page/RoomMainPage";
 import ShowPlanPage from './Page/ShowPlanPage';
-import MakePlanPage from './Page/MakePlanPage';
 import Page12 from "./Page/Page12";
 import Page9 from "./Page/Page9";
 
 
 const Router = ({ token, setToken }) => {
+
+
   return (
     <Routes>
       <Route
@@ -30,7 +31,7 @@ const Router = ({ token, setToken }) => {
       <Route path="/mkroom" element={<MakeRoomPage token={token} />} />
       <Route
         path="/enterbycode"
-        element={<RoomCodeEnterPage token={token} setToken={setToken} />}
+        element={<RoomCodeEnterModal token={token} setToken={setToken} />}
       />
       <Route
         path="/rule"
@@ -44,10 +45,7 @@ const Router = ({ token, setToken }) => {
         path="/plans"
         element={<ShowPlanPage token={token} setToken={setToken} />}
         />
-      <Route
-        path="/mkplan"
-        element={<MakePlanPage token={token} setToken={setToken} />}
-        />
+    
       <Route
         path="/12"
         element={<Page12/>}

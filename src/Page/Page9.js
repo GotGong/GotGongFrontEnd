@@ -4,6 +4,8 @@ import '../css/Page9.css'
 import { AiFillCheckSquare, AiOutlineBorder, AiOutlineFileText } from "react-icons/ai";
 import { BiDislike } from "react-icons/bi";
 import { resolvePath } from "react-router-dom";
+import NavBar2 from "../NavBar2.js";
+
 
 export default function Page9 () { // token, room_id는 Props로 받아온다고 가정 {token, user_id, room_id}
 
@@ -113,6 +115,8 @@ export default function Page9 () { // token, room_id는 Props로 받아온다고
     }
 
     return (
+        <>
+        <NavBar2 />
         <div style={{position: 'fixed', backgroundColor: '#F5F5F5', top: '19%', left: '0%', width: '100%', height: '81%'}}>
             <div style={{position: 'fixed', top: '23%', left: '3.5%', width: '93%', height: '72%', display: 'grid', gridTemplateColumns: '22fr 78fr'}}>
                 <div style={{height: '982px', display: 'grid', gridTemplateRows: '14fr, 86fr'}}>
@@ -153,5 +157,6 @@ export default function Page9 () { // token, room_id는 Props로 받아온다고
                 </div>
             </div>
         </div>
+        </>
     )
 }

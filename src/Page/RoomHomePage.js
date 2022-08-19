@@ -4,6 +4,8 @@ import "../css/RoomHomeStyle.css";
 import axios from "axios";
 import RoomCodeEnterModal from "./RoomCodeEnterModal.js";
 import Modal from "./Modal.js";
+import NavBar1 from "../NavBar1.js";
+
 
 function RoomHomePage() {
     const colorList = ['#FF8D8D', '#90FF8D', '#FF8DF4', '#FCFF64', '#95CCFF' ];
@@ -69,6 +71,7 @@ function RoomHomePage() {
 
   return (
     <>
+    <NavBar1 />
     <div className="RoomPageContainer">
       <div className="RoomHome">
         <div className="button-box">
