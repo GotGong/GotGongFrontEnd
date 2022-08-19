@@ -15,7 +15,8 @@ function RoomCodeEnterModal({ token, setToken }) {
                 console.log(response);
                 setRoom_id(response);
                 setRoom_code('');
-                navigate('/myrooms');
+                alert('입장 성공');
+                navigate('/room');
             }
   
             else{

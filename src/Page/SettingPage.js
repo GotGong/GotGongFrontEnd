@@ -3,6 +3,8 @@ import changeUsernameAPI from "../API/changeUsernameAPI";
 import changeUseridAPI from '../API/changeUseridAPI';
 import changePasswordAPI from '../API/changePasswordAPI';
 import deleteUserAPI from "../API/deleteUserAPI";
+import NavBar1 from "../NavBar1.js";
+
 
 const SettingPage = ({token, setToken}) => {
   const [username, setUsername] = useState('');
@@ -54,6 +56,8 @@ const SettingPage = ({token, setToken}) => {
   }
 
   return (
+    <>
+    <NavBar1 />
     <div className="PageContainer">
       <h1>마이페이지</h1>
       <div>
@@ -100,6 +104,7 @@ const SettingPage = ({token, setToken}) => {
         </div>
       </div>
     </div>
+    </>
   );
 }
 

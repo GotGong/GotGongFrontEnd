@@ -3,6 +3,7 @@ import signUpAPI from "../API/signUpAPI";
 import duplicationCheckAPI from "../API/duplicationCheckAPI";
 import { useNavigate } from 'react-router-dom';
 import "../css/SignUpStyle.css";
+import NavBar1 from "../NavBar1.js";
 
 function SignUpPage({setToken}) {
 
@@ -78,7 +79,7 @@ function SignUpPage({setToken}) {
           setPasswordToConfirm('');
           setUsername('');
           setEmail('');
-          navigate('/room');
+          navigate('/');
         }
         else {
           alert('회원가입 실패!!! - 원인으로는 서버 문제 or 아이디 중복 등의 원인이 있을 수 있습니다.');
@@ -104,6 +105,8 @@ function SignUpPage({setToken}) {
   };
 
   return (
+    <>
+    <NavBar1 />
     <div className="SignUpContainer">
       <h1>회원가입</h1>
       <div className="SignUpForm">
@@ -157,6 +160,7 @@ function SignUpPage({setToken}) {
         </div>
       </div>
     </div>
+    </>
   );
 }
 

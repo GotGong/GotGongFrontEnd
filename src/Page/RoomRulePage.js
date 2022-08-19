@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+import NavBar1 from "../NavBar1.js";
+
 
 
 function RoomRulePage(token, room_id) {
@@ -44,6 +46,8 @@ function RoomRulePage(token, room_id) {
   };
 
   return (
+    <>
+    <NavBar1 />
     <div className="PageContainer">
       <div>
         <h2>스터디방 이름 </h2>
@@ -77,6 +81,7 @@ function RoomRulePage(token, room_id) {
         </button>
       </div>
     </div>
+    </>
   );
 };
 
