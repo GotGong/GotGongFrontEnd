@@ -14,7 +14,7 @@ export default function Page9 () { // token, room_id는 Props로 받아온다고
     // const room_id = room_id
 
     // Test용 변수
-    const token = '00946a56840cfd2f1ef4c4dcac8c60a2fbc31fab'
+    const token = '117b62f152473946371005f0629836ff85753459	'
     const user_id = 1
     const room_id = 1
     
@@ -29,10 +29,13 @@ export default function Page9 () { // token, room_id는 Props로 받아온다고
     const [contents, setContents] = useState([])
     const [detailContents, setDetailContents] = useState([{'content': [], 'self_check': []}])
     const [currentPick, setCurrentPick] = useState(0)
-    const[rerender, setRerender] = useState(true)
+    const [rerender, setRerender] = useState(true)
     const [nowPlan, setNowPlan] = useState(0)
     const [planId, setPlanId] = useState(0)
     //const [planStatus, setPlanStatus] = useState(true)
+
+    console.log(planDislike)
+    console.log(contents)
 
     useEffect(() => {
         // 통신 기본
@@ -45,6 +48,7 @@ export default function Page9 () { // token, room_id는 Props로 받아온다고
             Authorization: `Token ${token}`
         }})
         .then((response) => {
+            console.log(response.data)
             setPlanCategoriesNum(response.data.entire_week/7)
             var temp = response.data.plan_info;
             setContents(temp.map(item => item.content))
@@ -67,21 +71,21 @@ export default function Page9 () { // token, room_id는 Props로 받아온다고
         })
     }, [])
 
-    useState(() => {
-        const dislikeUp = () =>  {
-            axios.post('http://localhost:8000/plan/dislike/', {
-                'plan_id': planId[currentPick]
-            }, {
-                headers: {
-                    Authorization: `Token ${token}`
-                }
-            })
-            .then((response) => {
-                planDislike[currentPick] += 1
-                setPlanDislike(planDislike)
-            })
-        }
-    }, [rerender])
+    const dislikeUp = () =>  {
+        let temp2 = planDislike
+        axios.post('http://localhost:8000/plan/dislike/', {
+            'plan_id': planId[currentPick]
+        }, {
+            headers: {
+                Authorization: `Token ${token}`
+            }
+        })
+        .then((response) => {
+            temp2[currentPick] += 1
+            setPlanDislike(temp2)
+            setRerender(!rerender)
+        })
+    }
 
     const planCategories = []
     for(let i = 0; i < planCategoriesNum; i++) {
