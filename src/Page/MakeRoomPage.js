@@ -25,62 +25,56 @@ function format(source, delimiter = "-") {
   return [year, month, day].join(delimiter);
 }
 
-function MakeRoomPage({ token }) {
-  const [title, setTitle] = useState("");
-  let [targetTime, setTargetTime] = useState(new Date());
-  const [maxUserNum, setMaxUserNum] = useState(0);
-  let [ruleNum, setRuleNum] = useState(9);
+function MakeRoomPage( {token} ) {
+    const [title, setTitle] = useState('');
+    let [targetTime, setTargetTime] = useState(new Date());
+    const [maxUserNum, setMaxUserNum] = useState(0);
+    let [ruleNum, setRuleNum] = useState(9);
 
-  let [roomId, setRoomId] = useState(0);
-  let [roomCode, setRoomCode] = useState("");
-  let [entryfee, setEntryfee] = useState(0);
+    let [roomId, setRoomId] = useState(0);
+    let [roomCode, setRoomCode] = useState('');
+    let [entryfee, setEntryfee] = useState(0);
 
-  const makeRoom = () => {
-    targetTime = format(targetTime);
 
-    console.log("makeroom 함수 실행됐음");
-    console.log(title);
-    console.log(targetTime);
-    console.log(maxUserNum);
-    console.log(ruleNum);
-    console.log(entryfee);
+    const makeRoom = ()  => {
 
-    axios
-      .post(
-        "http://localhost:8000/room/",
-        {
-          title: title,
-          target_date: targetTime,
-          max_user_num: maxUserNum,
-          rule_num: ruleNum,
-          entry_fee: entryfee,
-        },
-        {
-          headers: {
-            Authorization: `Token ${token}`,
+        targetTime = format(targetTime);
+        
+        axios.post("http://localhost:8000/room/", 
+          { 
+                title: title,
+                target_date: targetTime,
+                max_user_num: maxUserNum,
+                rule_num: ruleNum,
+                entry_fee: entryfee,
           },
-        }
-      )
-      .then((response) => {
-        console.log(response);
-        console.log("makeroom res ok");
-        if (response !== "") {
-          alert("방 만들기 성공");
-          setTitle("");
-          setMaxUserNum(0);
-          setRuleNum(0);
-          setEntryfee(0);
-          setRoomId((roomId = response.data.room_id));
-          setRoomCode((roomCode = response.data.room_code));
-          console.log(roomId);
-          console.log(roomCode);
-        } else alert("방 만들기 실패");
-      })
-      .catch(function (error) {
-        console.log(error);
-        console.log("makeroom에러?");
-      });
-  };
+          { headers: {
+                Authorization:`Token ${token}`,
+            }
+        })
+          .then((response) => {
+              console.log(response);
+              console.log('makeroom res ok');
+              if (response !== '') {
+                alert('방 만들기 성공');
+                setTitle('');
+                setMaxUserNum(0);
+                setRuleNum(0);  
+                setEntryfee(0);
+                setRoomId(roomId = response.data.room_id);
+                setRoomCode(roomCode = response.data.room_code);
+                console.log(roomId);
+                console.log(roomCode);
+                //여기서 /room으로 넘어가게 해야함
+            }
+            else 
+                alert('방 만들기 실패');
+          })
+          .catch(function (error) {
+              console.log(error);
+              console.log('makeroom에러?');
+          });
+  }
 
   const titleHandler = (e) => {
     setTitle(e.target.value);

@@ -4,7 +4,7 @@ import axios from "axios";
 // import "../css/RoomMainStyle.css";
 import NavBar2 from "../NavBar2.js";
 
-const RoomMainPage = () => {
+function RoomMainPage() {
   const params = useParams();
   //클릭된 room_id 변수 여기 저장됨
   var num = params.room_id;
