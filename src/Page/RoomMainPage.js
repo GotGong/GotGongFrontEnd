@@ -34,7 +34,7 @@ function RoomMainPage() {
       <div key={roomList[i].id} >
         {/* <Link to={`/myrooms/${roomList[i].id}`}> */}
             <button 
-            className="roomTitle-box" 
+            className="Title-box" 
             style={{backgroundColor:randomColor[i]}}
             >{roomList[i].title}</button>
         {/* </Link> */}
