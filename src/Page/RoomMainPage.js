@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import "../css/RoomMainStyle.css";
 import NavBar2 from "../NavBar2.js";
@@ -137,7 +137,22 @@ function RoomMainPage() {
               textAlign:'center',
             }}
           >
-            {rooms}
+
+            {roomList.map((r) => {
+              return (
+                <div key={r.id}>
+                  <Link to={`/myrooms/${r.id}`}>
+                  <button
+                    className="Title-box"
+                    style={{ backgroundColor: randomColor }}
+                  >
+                    {r.title}
+                  </button>
+                  </Link>
+                </div>
+              );
+            })}
+
           </div>
           <div
             className="UsersList"
@@ -185,28 +200,54 @@ function RoomMainPage() {
             style={{
               backgroundColor: "#FFFFFF",
               display: "grid",
-              borderRadius: "22px",
+              borderRadius: "22px 0px 0px 22px",
               margin: '20px',
             }}
           >
-            <div style={{backgroundColor: '#D9D9D9', height:'70px', borderRadius: "22px 22px 0px 0px", display: 'grid', alignItems: 'center', justifyContent: 'center'}}>
+            <div style={{backgroundColor: '#D9D9D9', height:'70px', borderRadius: "22px 0px 0px 0px", display: 'grid', alignItems: 'center', justifyContent: 'center'}}>
               <text>친구들과 나의 계획</text>
             </div>
-            OurPlan
+            {usersList.map((r) => {
+              return (
+                <div key={r.id}>
+                  <Link to={`/9/${r.id}`}>
+                  <button
+                    className="Title-box"
+                    style={{ backgroundColor: "#EDEDED", gridTemplateColumns: 'repeat(auto-fill,minmax(30%,auto))'}}
+                  >
+                    {r.username}
+                  </button>
+                  </Link>
+                </div>
+              );
+            })}
           </div>
           <div
             className="OurCheck"
             style={{
               backgroundColor: "#FFFFFF",
               display: "grid",
-              borderRadius: "22px",
+              borderRadius: "0px 22px 22px 0px",
               margin: '20px',
             }}
           >
-            <div style={{backgroundColor: '#D9D9D9', height:'70px', borderRadius: "22px 22px 0px 0px", display: 'grid', alignItems: 'center', justifyContent: 'center'}}>
+            <div style={{backgroundColor: '#D9D9D9', height:'70px', borderRadius: "0px 22px 0px 0px", display: 'grid', alignItems: 'center', justifyContent: 'center'}}>
               <text>친구들과 나의 수행</text>
             </div>
-            OurCheck
+            {usersList.map((r) => {
+              return (
+                <div key={r.id}>
+                  <Link to={`/9/${r.id}`}>
+                  <button
+                    className="Title-box"
+                    style={{ backgroundColor: "#EDEDED", gridTemplateColumns: 'repeat(auto-fill,minmax(30%,auto))'}}
+                  >
+                    {r.username}
+                  </button>
+                  </Link>
+                </div>
+              );
+            })}
           </div>
           <div
             className="dDay"
@@ -241,7 +282,7 @@ function RoomMainPage() {
               margin: '20px',
             }}
           >
-            <div style={{backgroundColor: '#D9D9D9', width:'100px', height:'70px', borderRadius: "22px 0px 0px 0px", display: 'grid', alignItems: 'center', justifyContent: 'center'}}>
+            <div style={{backgroundColor: '#D9D9D9', width:'100px', height:'70px', borderRadius: "22px 0px 22px 0px", display: 'grid', alignItems: 'center', justifyContent: 'center'}}>
               <text>Q&A</text>
             </div>
           </div>
