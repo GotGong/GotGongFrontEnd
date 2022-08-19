@@ -4,7 +4,7 @@ import axios from "axios";
 // error 시, token = '', 성공 시, token = 'Token 값'
 const signUpAPI = async (userid, password, username, email) => {
   let token = ''
-  await axios.post("http://localhost:8000/user/signup/", {
+  await axios.post("http://0:8000/user/signup/", {
     userid: userid,
     password: password,
     username: username,
