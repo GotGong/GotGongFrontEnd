@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-// import "../css/RoomMainStyle.css";
+import "../css/RoomMainStyle.css";
 import NavBar2 from "../NavBar2.js";
 
 function RoomMainPage() {
@@ -72,11 +72,8 @@ function RoomMainPage() {
       })
       .then((response) => {
         setUsersList([]);
-        for (let i = 0; i < response.data.room_user_count; i++) {
-          usersList.push(response.data.room_users_list[i].username);
-        }
-        setUsersList(usersList);
-        console.log(usersList);
+        setUsersList(response.data.room_users_list);
+        console.log(response.data.room_users_list);
       })
       .catch(function (error) {
         console.log(token);
@@ -108,26 +105,25 @@ function RoomMainPage() {
         className="All"
         style={{
           position: "fixed",
-          backgroundColor: "gray",
+          backgroundColor: "#F5F5F5",
           top: "19%",
           left: "0%",
           width: "100%",
           height: "81%",
         }}
       >
-        <div>
-          <h1>{num}번 방의 RoomMainPage</h1>
-        </div>
         <div
           className="RoomMainContainer"
           style={{
-            position: "fixed",
-            top: "23%",
-            left: "3.5%",
-            width: "93%",
-            height: "72%",
+            // position: "fixed",
+            // top: "23%",
+            // left: "3.5%",
+            // width: "93%",
+            // height: "72%",
             display: "grid",
-            gridTemplateColumns: "13fr 10fr 20fr 25.5fr 25.5fr",
+            gridTemplateColumns: "10fr 10fr 20fr 25.5fr 25.5fr",
+            gridTemplateRows: "65fr 35fr",
+            height: '100%',
           }}
         >
           <div
@@ -137,6 +133,8 @@ function RoomMainPage() {
               height: "100%",
               display: "grid",
               gridRow: "1/3",
+              alignContent:'start',
+              textAlign:'center',
             }}
           >
             {rooms}
@@ -145,9 +143,11 @@ function RoomMainPage() {
             className="UsersList"
             style={{
               backgroundColor: "#BFBFBF",
-              height: "100%",
               display: "grid",
               gridRow: "1/3",
+              alignContent:'start',
+              textAlign:'center',
+
             }}
           >
             {usersList.map((r) => {
@@ -155,44 +155,57 @@ function RoomMainPage() {
                 <div key={r.id}>
                   {/* <Link to={`/myrooms/${r.id}`}> */}
                   <button
-                    className="roomTitle-box"
+                    className="Title-box"
                     style={{ backgroundColor: "#EDEDED" }}
                   >
-                    {r}
+                    {r.username}
                   </button>
                   {/* </Link> */}
                 </div>
               );
             })}
           </div>
+
           <div
             className="ThisWeekPlan"
             style={{
               backgroundColor: "#FFFFFF",
-              height: "100%",
               display: "grid",
+              borderRadius: "22px",
+              margin: '20px',
             }}
           >
+            <div style={{backgroundColor: '#D9D9D9', height:'70px', borderRadius: "22px 22px 0px 0px", display: 'grid', alignItems: 'center', justifyContent: 'center'}}>
+              <text>나의 이번주 계획</text>
+            </div>
             ThisWeekPlan
           </div>
           <div
             className="OurPlan"
             style={{
               backgroundColor: "#FFFFFF",
-              height: "100%",
               display: "grid",
+              borderRadius: "22px",
+              margin: '20px',
             }}
           >
+            <div style={{backgroundColor: '#D9D9D9', height:'70px', borderRadius: "22px 22px 0px 0px", display: 'grid', alignItems: 'center', justifyContent: 'center'}}>
+              <text>친구들과 나의 계획</text>
+            </div>
             OurPlan
           </div>
           <div
             className="OurCheck"
             style={{
               backgroundColor: "#FFFFFF",
-              height: "100%",
               display: "grid",
+              borderRadius: "22px",
+              margin: '20px',
             }}
           >
+            <div style={{backgroundColor: '#D9D9D9', height:'70px', borderRadius: "22px 22px 0px 0px", display: 'grid', alignItems: 'center', justifyContent: 'center'}}>
+              <text>친구들과 나의 수행</text>
+            </div>
             OurCheck
           </div>
           <div
@@ -200,22 +213,37 @@ function RoomMainPage() {
             style={{
               backgroundColor: "#000000",
               color: "#FFFFFF",
-              height: "100%",
               display: "grid",
+              margin: '20px',
+              gridTemplateRows: '50fr 50fr',
+              borderRadius: '22px',
+              alignItems: 'center', justifyContent: 'center',
+              border: 'thick solid white',
             }}
           >
-            dDay
+
+              <div style={{borderRadius: '22px 22px 0px 0px',  display: "grid",}}>
+              <text>이번주 D-5일</text>
+              </div>
+
+              <div style={{borderRadius: '0px 0px 22px 22px', display: "grid",}}>
+              <text>스터디 D-4주</text>
+              </div>   
+
           </div>
           <div
             className="QnA"
             style={{
               backgroundColor: "#FFFFFF",
-              height: "100%",
               display: "grid",
               gridColumn: "4/6",
+              borderRadius: "22px",
+              margin: '20px',
             }}
           >
-            QnA
+            <div style={{backgroundColor: '#D9D9D9', width:'100px', height:'70px', borderRadius: "22px 0px 0px 0px", display: 'grid', alignItems: 'center', justifyContent: 'center'}}>
+              <text>Q&A</text>
+            </div>
           </div>
         </div>
       </div>

@@ -25,32 +25,42 @@ function format(source, delimiter = "-") {
   return [year, month, day].join(delimiter);
 }
 
-function MakeRoomPage( {token} ) {
-    const [title, setTitle] = useState('');
-    let [targetTime, setTargetTime] = useState(new Date());
-    const [maxUserNum, setMaxUserNum] = useState(0);
-    let [ruleNum, setRuleNum] = useState(9);
+function MakeRoomPage() {
+  const [title, setTitle] = useState("");
+  let [targetTime, setTargetTime] = useState(new Date());
+  const [maxUserNum, setMaxUserNum] = useState(0);
+  let [ruleNum, setRuleNum] = useState(9);
 
-    let [roomId, setRoomId] = useState(0);
-    let [roomCode, setRoomCode] = useState('');
-    let [entryfee, setEntryfee] = useState(0);
+  let [roomId, setRoomId] = useState(0);
+  let [roomCode, setRoomCode] = useState("");
+  let [entryfee, setEntryfee] = useState(0);
+  const token = localStorage.getItem("token");
 
 
-    const makeRoom = ()  => {
+  const makeRoom = () => {
+    targetTime = format(targetTime);
 
-        targetTime = format(targetTime);
-        
-        axios.post("http://localhost:8000/room/", 
-          { 
-                title: title,
-                target_date: targetTime,
-                max_user_num: maxUserNum,
-                rule_num: ruleNum,
-                entry_fee: entryfee,
+    console.log("makeroom 함수 실행됐음");
+    console.log(title);
+    console.log(targetTime);
+    console.log(maxUserNum);
+    console.log(ruleNum);
+    console.log(entryfee);
+
+    axios
+      .post(
+        "http://localhost:8000/room/",
+        {
+          title: title,
+          target_date: targetTime,
+          max_user_num: maxUserNum,
+          rule_num: ruleNum,
+          entry_fee: entryfee,
+        },
+        {
+          headers: {
+            Authorization: `Token ${token}`,
           },
-          { headers: {
-                Authorization:`Token ${token}`,
-            }
         })
           .then((response) => {
               console.log(response);

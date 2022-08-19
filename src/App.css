@@ -11,29 +11,19 @@
 .navbar2 {
   position: fixed;
   width: 100%;
-  left: 0;
+  left: 100px;
   top: 0;
-  padding-top: 10px;
-}
-
-.header {
-  position: fixed;
-  width: 100%;
-  left: 0;
-  top: 0;
-  padding-top: 10px;
 }
 
 .navbar2 ul{
   list-style: none;
-  padding-top: 10px;
-  padding-left: 100px;
+  padding: 30px;
+  left: 100px;
 
 }
 
 .navbar2 ul li {
   float: left;
-  padding: 20px;
   padding-left: 50px;
   font-size: 32px;
 }
@@ -56,16 +46,16 @@
   position:fixed;
   width: 93px;
   height: 83px;
-  left: 48px;
-  top: 45px;
+  left: 30px;
+  top: 30px;
 }
 
 .navbarUsername {
   position: fixed;
   width: 93px;
   height: 93px;
-  right: 48px;
-  top: 45px;
+  right: 30px;
+  top: 30px;
   background: #EDEDED;
   border-radius: 22px;
   border: none;
