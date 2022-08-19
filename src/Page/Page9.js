@@ -12,9 +12,9 @@ export default function Page9 () { // token, room_id는 Props로 받아온다고
     // const room_id = room_id
 
     // Test용 변수
-    const token = 'b6b8b370d7c6774ae6d776e74565e3a39178f74a'
+    const token = '00946a56840cfd2f1ef4c4dcac8c60a2fbc31fab'
     const user_id = 1
-    const room_id = 9
+    const room_id = 1
     
     // useState
     // State를 만드는 함수
@@ -27,8 +27,9 @@ export default function Page9 () { // token, room_id는 Props로 받아온다고
     const [contents, setContents] = useState([])
     const [detailContents, setDetailContents] = useState([{'content': [], 'self_check': []}])
     const [currentPick, setCurrentPick] = useState(0)
-    const [rerenderingVar, setRerenderingVar] = useState(true)
+    const[rerender, setRerender] = useState(true)
     const [nowPlan, setNowPlan] = useState(0)
+    const [planId, setPlanId] = useState(0)
     //const [planStatus, setPlanStatus] = useState(true)
 
     useEffect(() => {
@@ -60,8 +61,25 @@ export default function Page9 () { // token, room_id는 Props로 받아온다고
                         setNowPlan(i)
                 }
             }
+            setPlanId(temp.map(item => item.id))
         })
     }, [])
+
+    useState(() => {
+        const dislikeUp = () =>  {
+            axios.post('http://localhost:8000/plan/dislike/', {
+                'plan_id': planId[currentPick]
+            }, {
+                headers: {
+                    Authorization: `Token ${token}`
+                }
+            })
+            .then((response) => {
+                planDislike[currentPick] += 1
+                setPlanDislike(planDislike)
+            })
+        }
+    }, [rerender])
 
     const planCategories = []
     for(let i = 0; i < planCategoriesNum; i++) {
@@ -146,7 +164,7 @@ export default function Page9 () { // token, room_id는 Props로 받아온다고
                                 <text style={{fontSize: '3.5vh'}}>{<BiDislike size="90px"/>} {planDislike[currentPick]} </text>
                             </div>
                             <div id='dislike_button' style={{width: '100%', backgroundColor: 'black', display: 'grid', alignItems: 'center', justifyContent: 'center'}}>
-                                <text style={{fontSize: '3vh', color: 'white'}}><BiDislike size="90px" color="white"/></text>
+                                <button onClick={dislikeUp} style={{fontSize: '3vh', color: 'white'}}><BiDislike size="90px" color="white"/></button>
                             </div>
                         </div>
                     </div>
