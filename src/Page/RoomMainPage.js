@@ -138,20 +138,7 @@ function RoomMainPage() {
             }}
           >
 
-            {roomList.map((r) => {
-              return (
-                <div key={r.id}>
-                  <Link to={`/myrooms/${r.id}`}>
-                  <button
-                    className="Title-box"
-                    style={{ backgroundColor: randomColor }}
-                  >
-                    {r.title}
-                  </button>
-                  </Link>
-                </div>
-              );
-            })}
+{rooms}
 
           </div>
           <div
