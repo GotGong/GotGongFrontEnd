@@ -165,6 +165,9 @@ function RoomMainPage() {
               margin: '20px',
             }}
           >
+            <div style={{backgroundColor: '#D9D9D9', height:'70px', borderRadius: "22px 22px 0px 0px", display: 'grid', alignItems: 'center', justifyContent: 'center'}}>
+              <text>나의 이번주 계획</text>
+            </div>
             ThisWeekPlan
           </div>
           <div
@@ -176,6 +179,9 @@ function RoomMainPage() {
               margin: '20px',
             }}
           >
+            <div style={{backgroundColor: '#D9D9D9', height:'70px', borderRadius: "22px 22px 0px 0px", display: 'grid', alignItems: 'center', justifyContent: 'center'}}>
+              <text>친구들과 나의 계획</text>
+            </div>
             OurPlan
           </div>
           <div
@@ -187,6 +193,9 @@ function RoomMainPage() {
               margin: '20px',
             }}
           >
+            <div style={{backgroundColor: '#D9D9D9', height:'70px', borderRadius: "22px 22px 0px 0px", display: 'grid', alignItems: 'center', justifyContent: 'center'}}>
+              <text>친구들과 나의 수행</text>
+            </div>
             OurCheck
           </div>
           <div
@@ -195,12 +204,22 @@ function RoomMainPage() {
               backgroundColor: "#000000",
               color: "#FFFFFF",
               display: "grid",
-              borderRadius: "22px",
               margin: '20px',
-              
+              gridTemplateRows: '50fr 50fr',
+              borderRadius: '22px',
+              alignItems: 'center', justifyContent: 'center',
+              border: 'thick solid white',
             }}
           >
-            dDay
+
+              <div style={{borderRadius: '22px 22px 0px 0px',  display: "grid",}}>
+              <text>이번주 D-5일</text>
+              </div>
+
+              <div style={{borderRadius: '0px 0px 22px 22px', display: "grid",}}>
+              <text>스터디 D-4주</text>
+              </div>   
+
           </div>
           <div
             className="QnA"
@@ -210,10 +229,11 @@ function RoomMainPage() {
               gridColumn: "4/6",
               borderRadius: "22px",
               margin: '20px',
-
             }}
           >
-            QnA
+            <div style={{backgroundColor: '#D9D9D9', width:'100px', height:'70px', borderRadius: "22px 0px 0px 0px", display: 'grid', alignItems: 'center', justifyContent: 'center'}}>
+              <text>Q&A</text>
+            </div>
           </div>
         </div>
       </div>
