@@ -168,7 +168,7 @@ export default function Page9 () { // token, room_id는 Props로 받아온다고
                                 <text style={{fontSize: '3.5vh'}}>{<BiDislike size="90px"/>} {planDislike[currentPick]} </text>
                             </div>
                             <div id='dislike_button' style={{width: '100%', backgroundColor: 'black', display: 'grid', alignItems: 'center', justifyContent: 'center'}}>
-                                <button onClick={dislikeUp} style={{fontSize: '3vh', color: 'white'}}><BiDislike size="90px" color="white"/></button>
+                                <button  style={{fontSize: '3vh', color: 'white'}}><BiDislike size="90px" color="white"/></button>
                             </div>
                         </div>
                     </div>
