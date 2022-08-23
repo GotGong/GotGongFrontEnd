@@ -19,12 +19,12 @@ const Router = ({ token, setToken }) => {
   return (
     <Routes>
       <Route
-        path="/"
+        path=""
         element={<SignInPage token={token} setToken={setToken} />}
       />
-      <Route path="/signup" element={<SignUpPage setToken={setToken} />} />
+      <Route path="signup/" element={<SignUpPage setToken={setToken} />} />
       <Route
-        path="/setting"
+        path="setting/"
         element={<SettingPage token={token} setToken={setToken} />}
       />
       <Route path="/room" element={<RoomHomePage token={token} />} />
