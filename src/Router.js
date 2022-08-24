@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import SignInPage from "./Page/SignInPage";
 import SignUpPage from "./Page/SignUpPage";
@@ -12,10 +12,7 @@ import Page12 from "./Page/Page12";
 import Page9 from "./Page/Page9";
 import RefundShow from "./Page/RefundShowPage";
 
-
 const Router = ({ token, setToken }) => {
-
-
   return (
     <Routes>
       <Route
@@ -41,19 +38,10 @@ const Router = ({ token, setToken }) => {
         path="/myrooms/:room_id"
         element={<RoomMainPage token={token} setToken={setToken} />}
       />
-    
-      <Route
-        path="/12"
-        element={<Page12/>}
-      />
-      <Route
-        path="/9"
-        element={<Page9/>}
-      />
-      <Route
-        path="/refund"
-        element={<RefundShow/>}
-      />
+
+      <Route path="/12" element={<Page12 />} />
+      <Route path="/9" element={<Page9 />} />
+      <Route path="/refund" element={<RefundShow />} />
     </Routes>
   );
 };

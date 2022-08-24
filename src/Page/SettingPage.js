@@ -4,6 +4,7 @@ import changeUseridAPI from '../API/changeUseridAPI';
 import changePasswordAPI from '../API/changePasswordAPI';
 import deleteUserAPI from "../API/deleteUserAPI";
 import NavBar1 from "../NavBar1.js";
+import "../css/SettingStyle.css"
 
 
 const SettingPage = ({token, setToken}) => {
@@ -58,41 +59,43 @@ const SettingPage = ({token, setToken}) => {
   return (
     <>
     <NavBar1 />
-    <div className="PageContainer">
-      <h1>마이페이지</h1>
+    <div className="SettingPageContainer" style={{position: 'fixed', top: '15%', width: '100%',}}>
       <div>
-        <div>
-          <input
+        <h1>마이페이지</h1>
+      </div>
+      <div style={{display: 'grid', alignItems: 'center', justifyContent: 'center'}}>
+        <div >
+          <input style={{width: '400px', height:'90px', margin:'15px'}}
             name="username"
             type="text"
             placeholder={Username}
             onChange={usernameHandler}
           />
-          <button className="changeUsername" onClick={changeUsername}>
+          <button className="changeUsername" onClick={changeUsername} style={{width: '250px', height:'90px'}}>
             이름변경
           </button>
         </div>
         <br/>
         <div>
-          <input
+          <input style={{width: '400px', height:'90px', margin:'15px'}}
             name="userid"
             type="text"
             placeholder={UserId}
             onChange={useridHandler}
           />
-          <button className="changeUserid" onClick={changeUserid}>
+          <button className="changeUserid" onClick={changeUserid} style={{width: '250px', height:'90px'}}> 
             아이디변경
           </button>
         </div>
         <br/>
         <div>
-          <input
+          <input style={{width: '400px', height:'90px', margin:'15px'}}
             name="password"
             type="text"
             placeholder="password"
             onChange={passwordHandler}
           />
-          <button className="changePassword" onClick={changePassword}>
+          <button className="changePassword" onClick={changePassword} style={{width: '250px', height:'90px'}}>
             비밀번호변경
           </button>
         </div>
