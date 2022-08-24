@@ -293,20 +293,34 @@ function RoomMainPage() {
                 <text>친구들과 나의 수행</text>
               </button>
             </div>
-            <div style={{display:'grid', gridTemplateColumns:'1fr 1fr 1fr 1fr', 
-                }}>
-              {users}
-            </div>
-            
-            <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', justifyItems:'center', alignItems:'center'}}>
-              <Link to="/9">
-              <button style={{borderRadius:'22px',backgroundColor:'black',color:'white', fontSize:'18px', height:'70px', width: '280px'}}>
-                새 계획 작성하기
-              </button>
-              </Link>
-              <button style={{borderRadius:'22px',backgroundColor:'black',color:'white', fontSize:'18px', height:'70px', width: '280px'}}>
-                새 수행 작성하기
-              </button>
+            {usersList.map((r) => {
+              return (
+                <div key={r.id}>
+                  {/* <Link to={`/9/${r.id}`}> */}
+                  <Link to={`/9/`}>
+                  <button
+                    className="Title-box"
+                    style={{ backgroundColor: "#EDEDED", gridTemplateColumns: 'repeat(auto-fill,minmax(30%,auto))'}}
+                  >
+                    {r.username}
+                  </button>
+                  </Link>
+                </div>
+              );
+            })}
+          </div>
+          <div
+            className="OurCheck"
+            style={{
+              backgroundColor: "#FFFFFF",
+              display: "grid",
+              borderRadius: "0px 22px 22px 0px",
+              margin: '20px',
+            }}
+          >
+            <div style={{backgroundColor: '#D9D9D9', height:'70px', borderRadius: "0px 22px 0px 0px", display: 'grid', alignItems: 'center', justifyContent: 'center'}}>
+              <text>친구들과 나의 수행</text>
+
             </div>
           </div>
           
