@@ -33,19 +33,6 @@ function RoomHomePage() {
 
     const rooms = []
 
-//  기존
-//  roomData.map((r) =>{
-//     return (
-//         <div key={r.id} >
-//             <Link to={`/myrooms/${r.id}`}>
-//                 <button 
-//                 className="roomTitle-box" 
-//                 style={{backgroundColor:randomColor}}
-//                  >{r.title}</button>
-//             </Link>
-//         </div>
-//     );
-//  })
     for(let i = 0; i < roomCount; i++) {
       rooms.push(
         <div key={roomData[i].id} >
