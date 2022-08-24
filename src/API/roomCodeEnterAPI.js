@@ -1,10 +1,9 @@
 import axios from "axios";
 
-const roomCodeEnterAPI = async(room_code) => {
+const roomCodeEnterAPI = async(room_code,token) => {
     let room_id = ''
-    const token  = localStorage.getItem('token');
-    console.log(token);
-    console.log(room_code);
+    console.log(token)
+    console.log(room_code)
     await axios.post("http://localhost:8000/room/enterbycode/",  {
         room_code: room_code,
     },{
@@ -21,7 +20,6 @@ const roomCodeEnterAPI = async(room_code) => {
     .catch(function(error){
         console.log(error);
         console.log("roomcode인식실패");
-
     });
     return room_id;
 }

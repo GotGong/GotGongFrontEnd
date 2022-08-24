@@ -1,4 +1,4 @@
-# GotGongBackEnd
+# GotGongFrontEnd
 같공(같이 공부할래?) FrontEnd 서버입니다
 
 ### 초기 세팅
