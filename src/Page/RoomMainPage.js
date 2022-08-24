@@ -3,6 +3,8 @@ import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import "../css/RoomMainStyle.css";
 import NavBar2 from "../NavBar2.js";
+import { BiBookmark, BiCheckbox} from "react-icons/bi";
+
 
 function RoomMainPage() {
   const params = useParams();
@@ -14,34 +16,62 @@ function RoomMainPage() {
 
   const token = localStorage.getItem("token");
 
-  // const roomId = 1;
   const [roomList, setRoomList] = useState([]);
   const [usersList, setUsersList] = useState([]);
-
   const [roomCount, setRoomCount] = useState(0);
-  var randomColor = []
-  for(let i = 0; i < 5; i++){
-    var col = colorList.splice(Math.floor(Math.random() * 5), 1)[0]
-    if (col != undefined)
-      randomColor.push(col)
-    else
-      i -= 1
+  const [usersCount, setUsersCount] = useState(0);
+  const [contents, setContents] = useState([]);
+  const [detailPlans, setDetailPlans] = useState([]);
+  const [plandDay, setPlandDay] = useState(0);
+  const [roomdDay, setRoomdDay] = useState(0);
+  const [isActive, setIsActive] = useState(true);
+
+  var randomColor = [];
+  for (let i = 0; i < 5; i++) {
+    var col = colorList.splice(Math.floor(Math.random() * 5), 1)[0];
+    if (col != undefined) randomColor.push(col);
+    else i -= 1;
   }
-  console.log(roomCount)
-  const rooms = []
-  for(let i = 0; i < roomCount; i++) {
+
+  const handleClick = event => {
+    setIsActive(current => !current);
+  };
+
+  const rooms = [];
+  for (let i = 0; i < roomCount; i++) {
     rooms.push(
-      <div key={roomList[i].id} >
-        {/* <Link to={`/myrooms/${roomList[i].id}`}> */}
-            <button 
-            className="roomTitle-box" 
-            style={{backgroundColor:randomColor[i]}}
-            >{roomList[i].title}</button>
-        {/* </Link> */}
+      <div key={roomList[i].id}>
+        <Link to={`/myrooms/${roomList[i].id}`}>
+          <button
+            className="Title-box"
+            style={{ backgroundColor: randomColor[i] }}
+          >
+            {roomList[i].title}
+          </button>
+        </Link>
       </div>
-    )
+    );
   }
+
+  const users = [];
+  for (let i = 0; i < usersCount; i++) {
+    users.push(
+      <div>
+        <Link to="/9">
+          <button
+            className="Title-box"
+            style={{backgroundColor:'#EDEDED', color:'black',}}
+          >
+            {usersList[i].username}
+          </button>
+        </Link>
+      </div>
+    );
+  }
+
+
   useEffect(() => {
+
     axios
       .get(`http://localhost:8000/room/myroomlist/`, {
         headers: {
@@ -54,18 +84,20 @@ function RoomMainPage() {
         //   roomList.push(response.data.my_room_list[i].title);
         // }
         setRoomList(response.data.my_room_list);
-        setRoomCount(response.data.my_room_list.length < 5 ? response.data.my_room_list.length : 5)
+        setRoomCount(
+          response.data.my_room_list.length < 5
+            ? response.data.my_room_list.length
+            : 5
+        );
         console.log(response.data.my_room_list);
       })
       .catch(function (error) {
         console.log(token);
-        console.error(error.response.data);
+        console.error(error.response);
       });
-  }, []);
 
-  useEffect(() => {
     axios
-      .get(`http://localhost:8000/room/users/1/`, {
+      .get(`http://localhost:8000/room/users/${num}/`, {
         headers: {
           Authorization: `Token ${token}`,
         },
@@ -73,30 +105,58 @@ function RoomMainPage() {
       .then((response) => {
         setUsersList([]);
         setUsersList(response.data.room_users_list);
+        setUsersCount(response.data.room_user_count);
         console.log(response.data.room_users_list);
       })
       .catch(function (error) {
         console.log(token);
-        console.error(error.response.data);
+        console.error(error.response);
+      });
+
+      axios
+      .get(`http://localhost:8000/plan/user_plans/${num}/`, {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+        var temp = response.data.plan_info;
+        for(let i=0; i<temp.length;i++) {
+          if (temp[i].plan_status === true) {
+            setContents(temp[i].content)
+            const dp=[];
+            for(let j=0; j<temp[i].detail_plans.length;j++) {
+              dp.push(temp[i].detail_plans[j].content)
+            }
+            console.log(dp)
+            setDetailPlans(dp)
+          }
+        }
+
+      })
+      .catch(function (error) {
+        console.error(error.response);
+      });
+
+      axios
+      .get(`http://localhost:8000/plan/content/${num}/`, {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+        setPlandDay(response.data.plan_dday);
+        setRoomdDay(Math.floor(response.data.study_dday/7));
+
+      })
+      .catch(function (error) {
+        console.error(error.response);
       });
   }, []);
 
-  // useEffect(() => {
-  //   axios
-  //     .get(``, {
-  //       headers: {
-  //         Authorization: `Token ${token}`,
-  //       },
-  //     })
-  //     .then((response) => {
-  //       const week = response.data.plan_info;
-  //       setThisWeek(week);
-  //       console.log(thisWeek);
-  //     })
-  //     .catch(function (error) {
-  //       console.error(error.response.data);
-  //     });
-  // }, []);
+ 
 
   return (
     <>
@@ -115,15 +175,10 @@ function RoomMainPage() {
         <div
           className="RoomMainContainer"
           style={{
-            // position: "fixed",
-            // top: "23%",
-            // left: "3.5%",
-            // width: "93%",
-            // height: "72%",
             display: "grid",
-            gridTemplateColumns: "10fr 10fr 20fr 25.5fr 25.5fr",
+            gridTemplateColumns: "10fr 10fr 30fr 50fr",
             gridTemplateRows: "65fr 35fr",
-            height: '100%',
+            height: "100%",
           }}
         >
           <div
@@ -133,13 +188,10 @@ function RoomMainPage() {
               height: "100%",
               display: "grid",
               gridRow: "1/3",
-              alignContent:'start',
-              textAlign:'center',
+              alignContent: "start",
             }}
           >
-
-{rooms}
-
+            {rooms}
           </div>
           <div
             className="UsersList"
@@ -147,22 +199,18 @@ function RoomMainPage() {
               backgroundColor: "#BFBFBF",
               display: "grid",
               gridRow: "1/3",
-              alignContent:'start',
-              textAlign:'center',
-
+              alignContent: "start",
             }}
           >
             {usersList.map((r) => {
               return (
                 <div key={r.id}>
-                  {/* <Link to={`/myrooms/${r.id}`}> */}
                   <button
                     className="Title-box"
                     style={{ backgroundColor: "#EDEDED" }}
                   >
                     {r.username}
                   </button>
-                  {/* </Link> */}
                 </div>
               );
             })}
@@ -174,25 +222,76 @@ function RoomMainPage() {
               backgroundColor: "#FFFFFF",
               display: "grid",
               borderRadius: "22px",
-              margin: '20px',
+              margin: "20px",
             }}
           >
-            <div style={{backgroundColor: '#D9D9D9', height:'70px', borderRadius: "22px 22px 0px 0px", display: 'grid', alignItems: 'center', justifyContent: 'center'}}>
+            <div
+              style={{
+                backgroundColor: "#D9D9D9",
+                height: "70px",
+                borderRadius: "22px 22px 0px 0px",
+                display: "grid",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
               <text>나의 이번주 계획</text>
             </div>
-            ThisWeekPlan
+
+              <text>{<BiBookmark size='30px'/>}{contents}</text>
+              <div style={{display:'grid',gridTemplateRows:'repeat(4,1fr)', margin:'30px'}}>
+              {detailPlans.map((r) => {
+                return (
+                  <div style={{textAlign:'start'}}>
+                      {<BiCheckbox size='20px' />}{r}
+                  </div>
+                );
+              })}
+              </div>
           </div>
+
           <div
             className="OurPlan"
             style={{
               backgroundColor: "#FFFFFF",
               display: "grid",
-              borderRadius: "22px 0px 0px 22px",
-              margin: '20px',
+              borderRadius: "22px 22px 22px 22px",
+              margin: "20px",
             }}
           >
-            <div style={{backgroundColor: '#D9D9D9', height:'70px', borderRadius: "22px 0px 0px 0px", display: 'grid', alignItems: 'center', justifyContent: 'center'}}>
-              <text>친구들과 나의 계획</text>
+            <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', }}>
+              <button id='mainbutton'
+                style={{
+                  backgroundColor: "#D9D9D9",
+                  height: "70px",
+                  borderRadius: "22px 0px 0px 0px",
+                  display: "grid",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontSize:"20px",
+                  color:"black",
+                }}
+                className={isActive ? 'activeStyle' : ''}
+                onClick={handleClick}
+              >
+                <text>친구들과 나의 계획</text>
+              </button>
+              <button id='mainbutton'
+                style={{
+                  backgroundColor: "#D9D9D9",
+                  height: "70px",
+                  borderRadius: "0px 22px 0px 0px",
+                  display: "grid",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontSize:"20px",
+                  color:"black",
+                }}
+                className={isActive ? 'activeStyle' : ''}
+                onClick={handleClick}
+              >
+                <text>친구들과 나의 수행</text>
+              </button>
             </div>
             {usersList.map((r) => {
               return (
@@ -221,56 +320,52 @@ function RoomMainPage() {
           >
             <div style={{backgroundColor: '#D9D9D9', height:'70px', borderRadius: "0px 22px 0px 0px", display: 'grid', alignItems: 'center', justifyContent: 'center'}}>
               <text>친구들과 나의 수행</text>
+
             </div>
-            {usersList.map((r) => {
-              return (
-                <div key={r.id}>
-                  <Link to={`/9/${r.id}`}>
-                  <button
-                    className="Title-box"
-                    style={{ backgroundColor: "#EDEDED", gridTemplateColumns: 'repeat(auto-fill,minmax(30%,auto))'}}
-                  >
-                    {r.username}
-                  </button>
-                  </Link>
-                </div>
-              );
-            })}
           </div>
+          
           <div
             className="dDay"
             style={{
               backgroundColor: "#000000",
               color: "#FFFFFF",
               display: "grid",
-              margin: '20px',
-              gridTemplateRows: '50fr 50fr',
-              borderRadius: '22px',
-              alignItems: 'center', justifyContent: 'center',
-              border: 'thick solid white',
+              margin: "20px",
+              gridTemplateRows: "1fr 1fr",
+              borderRadius: "22px",
+              alignItems: "center",
+              justifyContent: "center",
+              border: "thick solid #D9D9D9",
             }}
           >
+            <div style={{ borderRadius: "22px 22px 0px 0px", display: "grid" }}>
+              <text>이번주 D - {plandDay} 일</text>
+            </div>
 
-              <div style={{borderRadius: '22px 22px 0px 0px',  display: "grid",}}>
-              <text>이번주 D-5일</text>
-              </div>
-
-              <div style={{borderRadius: '0px 0px 22px 22px', display: "grid",}}>
-              <text>스터디 D-4주</text>
-              </div>   
-
+            <div style={{ borderRadius: "0px 0px 22px 22px", display: "grid" }}>
+              <text>스터디 D - {roomdDay} 주</text>
+            </div>
           </div>
           <div
             className="QnA"
             style={{
               backgroundColor: "#FFFFFF",
               display: "grid",
-              gridColumn: "4/6",
               borderRadius: "22px",
-              margin: '20px',
+              margin: "20px",
             }}
           >
-            <div style={{backgroundColor: '#D9D9D9', width:'100px', height:'70px', borderRadius: "22px 0px 22px 0px", display: 'grid', alignItems: 'center', justifyContent: 'center'}}>
+            <div
+              style={{
+                backgroundColor: "#D9D9D9",
+                width: "100px",
+                height: "70px",
+                borderRadius: "22px 0px 22px 0px",
+                display: "grid",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
               <text>Q&A</text>
             </div>
           </div>
@@ -278,6 +373,6 @@ function RoomMainPage() {
       </div>
     </>
   );
-};
+}
 
 export default RoomMainPage;

@@ -8,6 +8,13 @@
   color: #000000;
 }
 
+.navbar1 {
+  position: fixed;
+  width: 100%;
+  left: 100px;
+  top: 0;
+}
+
 .navbar2 {
   position: fixed;
   width: 100%;
@@ -36,10 +43,10 @@
 
 .gotgongLogo1 {
   position:fixed;
-  width: 120px;
-  height: 152px;
-  left: 86px;
-  top: 82px;
+  width: 115px;
+  height: 142px;
+  left: 60px;
+  top: 60px;
 }
 
 .gotgongLogo2 {
