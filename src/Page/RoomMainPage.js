@@ -197,7 +197,8 @@ function RoomMainPage() {
             {usersList.map((r) => {
               return (
                 <div key={r.id}>
-                  <Link to={`/9/${r.id}`}>
+                  {/* <Link to={`/9/${r.id}`}> */}
+                  <Link to={`/9/`}>
                   <button
                     className="Title-box"
                     style={{ backgroundColor: "#EDEDED", gridTemplateColumns: 'repeat(auto-fill,minmax(30%,auto))'}}
