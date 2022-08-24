@@ -41,7 +41,7 @@ const NavBar2 = ({token, setToken}) => {
           </Link>
         </li>
         <li>
-          <Link to="/plans">
+          <Link to="/refund">
             <span>환급 비용 계산</span>
           </Link>
         </li>
