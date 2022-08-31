@@ -8,14 +8,15 @@ import NavBar2 from "../NavBar2.js";
 
 
 export default function Page9 () { // token, room_id는 Props로 받아온다고 가정 {token, user_id, room_id}
+    // const token = localStorage.getItem('token');
     // const token = token
     // const user_id = user_id
     // const room_id = room_id
 
     // Test용 변수
 
-    const token = '117b62f152473946371005f0629836ff85753459	'
-    const user_id = 1
+    const token = '26480fdeeac7b3c985387732291204615c21de4f'
+    const user_id = 2
     const room_id = 1
     
     // useState

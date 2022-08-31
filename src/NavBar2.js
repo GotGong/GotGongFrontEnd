@@ -1,6 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import './App.css';
+import Modal from "./Page/Modal.js";
+import NavBarModal from './Page/NavBarModal.js';
 
 
 const NavBar2 = ({token, setToken}) => {
@@ -8,13 +10,20 @@ const NavBar2 = ({token, setToken}) => {
     const [signInOn, setSignInOn] = useState(false);
     const username  = localStorage.getItem('username');
     
-
-    const resetHandler = () => {
-      setSignInOn(false);
-      localStorage.clear();
-      console.log('로그아웃');
-      navigate('/');
+    const [modalOpen, setModalOpen] = useState(false);
+    const openModal = () => {
+      setModalOpen(true);
     };
+    const closeModal = () => {
+      setModalOpen(false);
+    };
+
+    // const resetHandler = () => {
+    //   setSignInOn(false);
+    //   localStorage.clear();
+    //   console.log('로그아웃');
+    //   navigate('/');
+    // };
 
     useEffect(() => {
         if (localStorage.getItem('token') !== null) {
@@ -52,10 +61,15 @@ const NavBar2 = ({token, setToken}) => {
         </li>
       </ul>
         {signInOn ? 
-                <button className='navbarUsername' onClick={resetHandler}>{username}</button>
+                <button className='navbarUsername' onClick={openModal}>{username}</button>
             :
                 <></>
         }
+        {modalOpen && (
+            <Modal closeModal={() => setModalOpen(!modalOpen)}>
+              <NavBarModal />
+            </Modal>
+        )}
       </div>
 
     );

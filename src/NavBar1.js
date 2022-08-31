@@ -1,10 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import './App.css';
+import Modal2 from "./Page/Modal2.js";
+import NavBarModal from './Page/NavBarModal.js';
 
 const NavBar1 = () => {
   const navigate = useNavigate();
   const username  = localStorage.getItem('username');
+
+  const [modalOpen, setModalOpen] = useState(false);
+  const openModal = () => {
+    setModalOpen(true);
+  };
+  const closeModal = () => {
+    setModalOpen(false);
+  };
   
   const [navBar1, setNavBar1] = useState(true);
 
@@ -48,10 +58,15 @@ const NavBar1 = () => {
                 </Link>
             }
             {signInOn ? 
-                <button className='navbarUsername' onClick={resetHandler}>{username}</button>
+                <button className='navbarUsername' onClick={openModal}>{username}</button>
             :
                 <></>
             }
+            {modalOpen && (
+            <Modal2 closeModal={() => setModalOpen(!modalOpen)}>
+              <NavBarModal />
+            </Modal2>
+        )}
         </div>
     {/* { :
       <div className="navbar2">
