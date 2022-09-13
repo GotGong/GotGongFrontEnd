@@ -11,6 +11,7 @@ import RoomMainPage from "./Page/RoomMainPage";
 import Page12 from "./Page/Page12";
 import Page9 from "./Page/Page9";
 import RefundShow from "./Page/RefundShowPage";
+import Ranking from "./Page/RankingPage";
 
 const Router = ({ token, setToken }) => {
   return (
@@ -39,9 +40,10 @@ const Router = ({ token, setToken }) => {
         element={<RoomMainPage token={token} setToken={setToken} />}
       />
 
-      <Route path="/12" element={<Page12 />} />
-      <Route path="/9" element={<Page9 />} />
-      <Route path="/refund" element={<RefundShow />} />
+      <Route path="/12" element={<Page12 token={token} setToken={setToken} />} />
+      <Route path="/9" element={<Page9 token={token} setToken={setToken} />} />
+      <Route path="/refund" element={<RefundShow token={token} setToken={setToken} />} />
+      <Route path="/rank" element={<Ranking token={token} setToken={setToken} />} />
     </Routes>
   );
 };
