@@ -3,32 +3,21 @@ import React, { useState, useEffect } from "react";
 import { useParams, Link, resolvePath } from "react-router-dom";
 import NavBar2 from "../NavBar2.js";
 
-function RefundShowPage() {
-    const room_id = 1
-    // const [refundList, setRefundList] = useState([]);
 
+function RankingPage() {
+    const room_id = 1
     
     axios
-        .get(`http://localhost:8000/plan/refund/${room_id}/`)
+        .get(`http://localhost:8000/plan/rank/${room_id}/`)
         .then((response) => {
-            console.log(response.data);
-            console.log('refund API 연결 성공');
-            const list = response.data;
-            
-            // const getEntries = Object.entries(list).map((name, money) => {
-            //     return console.log(name,money);
- 
-            // });
-            
-
+            console.log(response);
+            console.log('ranking API 연결 성공');
         })
         .catch(function(error){
-            console.error(error);
-            console.log('refund API 연결 실패');
+            console.error(error.response);
+            console.log('ranking API 연결 실패');
             
         })
-
-        
 
     return (
         <>
@@ -41,11 +30,12 @@ function RefundShowPage() {
                             <div style={{borderTopLeftRadius: '20px', borderBottomLeftRadius: '20px'}}/>
                             <div style={{alignContent: "start", display: 'grid', gridTemplateRows: '0.5fr 1.5fr 8fr'}}>
                                 <div/>
+                                
                             </div>
                             <div/>
                         </div>
                         <div style={{backgroundColor: '#D9D9D9', height: '880px', display: 'grid', gridTemplateRows: '1.8fr 6.4fr 1.8fr', display: 'grid', alignItems: 'center', justifyContent: 'center', overflow:'hidden', borderTopRightRadius: '20px', borderBottomRightRadius: '20px'}}>
-                            d
+                            
                         </div>
                     </div>
                 </div>
@@ -56,4 +46,4 @@ function RefundShowPage() {
 }
 
 
-export default RefundShowPage;
+export default RankingPage;

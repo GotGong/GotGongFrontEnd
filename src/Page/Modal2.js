@@ -8,6 +8,7 @@ function closeModal() {
     props.closeModal();
   }
  
+
   return (
     <div className="modal2Background" onClick={closeModal}>
       <div className="modal2Body" onClick={(e) => e.stopPropagation()}>
