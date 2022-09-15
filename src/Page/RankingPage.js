@@ -6,19 +6,45 @@ import NavBar2 from "../NavBar2.js";
 
 function RankingPage() {
     const room_id = 1
-    
-    axios
-        .get(`http://localhost:8000/plan/rank/${room_id}/`)
+    const [UserNum, setUserNum] = useState(0)
+    const [name, setName] = useState([])
+    const [values, setValues] = useState([])
+
+    useEffect(() => {
+        axios.get(`http://localhost:8000/plan/rank/${room_id}/`)
         .then((response) => {
-            console.log(response);
+            console.log(response.data);
             console.log('ranking API 연결 성공');
+            var temp = response.data
+            var names = Object.getOwnPropertyNames(temp);
+            setName(names)
+            var percent = Object.values(temp);
+            setValues(percent)
+            setUserNum(temp.length)
+            console.log(percent);
+            console.log(names);
         })
         .catch(function(error){
             console.error(error.response);
             console.log('ranking API 연결 실패');
-            
         })
+    }, [])
 
+    const UserNames = []
+    UserNames.push(
+        <div style={{width: '100%', height: '80px', borderRadius: '20px', display: 'grid',  alignItems: 'center', justifyItems: 'center'}}>
+            <text id="now_plan" style={{fontSize: '3vh'}}>{name}</text>
+        </div>
+    )
+
+        
+    const UserPercents = []
+    UserPercents.push(
+        <div style={{width: '100%', height: '80px', borderRadius: '20px', display: 'grid',  alignItems: 'center', justifyItems: 'center'}}>
+            <text id="now_plan" style={{fontSize: '3vh'}}>{values}</text>
+        </div>
+    )
+        
     return (
         <>
         <NavBar2 />
@@ -30,7 +56,12 @@ function RankingPage() {
                             <div style={{borderTopLeftRadius: '20px', borderBottomLeftRadius: '20px'}}/>
                             <div style={{alignContent: "start", display: 'grid', gridTemplateRows: '0.5fr 1.5fr 8fr'}}>
                                 <div/>
-                                
+                                {UserNames}
+                            </div>
+                            <div/>
+                            <div style={{alignContent: "start", display: 'grid', gridTemplateRows: '0.5fr 1.5fr 8fr'}}>
+                                <div/>
+                                {UserPercents}
                             </div>
                             <div/>
                         </div>
