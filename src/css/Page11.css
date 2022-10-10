@@ -1,0 +1,104 @@
+#container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+
+    width: 95%;
+    height: 92%;
+    background-color: #BFBFBF;
+    border-radius: 20px;
+
+    display: grid;
+    grid-template-rows: 5fr 1fr 1fr;
+   
+}
+
+#top {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
+
+#leftItem {
+    width: 95%;
+    display: grid;
+    height: 95%;
+    
+    background-color: #ffffff;
+    border-radius: 20px;
+    margin: 20px;
+}
+
+#rightItem {
+    width: 90%;
+    display: grid;
+    height: 95%;
+    
+    background-color: #e8e8e8;
+    border-radius: 20px;
+    margin: 20px;
+}
+
+
+#down {
+    display: grid;
+}
+
+/* #addImg {
+    width: 97%;
+    height: 50%;
+    background-color: white;
+    border-radius: 20px;
+    margin: 20px;
+
+    display: grid;
+    grid-template-columns: 5fr 1fr;
+}
+
+#addButton {
+    display: grid;
+    height: 100%;
+    width: 100%;
+
+    border-radius: 0 20px 20px 0;
+    padding-top: 20px;
+
+    font-size:20px;
+} */
+.filebox{
+    display: grid;
+    grid-template-columns: 6fr 1fr;
+    margin: 20px;
+}
+
+.filebox .upload-name {
+    display: grid;
+    height: 80px;
+    width: 100%;
+    border-radius: 20px 0px 0px 20px;
+    background-color: white;
+    padding-left: 10px;
+   
+    color: #d3d3d3;
+}
+
+.filebox label {
+    display: grid;
+   
+    height: 80px;
+    width: 100%;
+    border-radius: 0 20px 20px 0;
+
+    color: #fff;
+    font-size: 25px;
+    background-color: #000000;
+}
+
+.filebox input[type="file"] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+}

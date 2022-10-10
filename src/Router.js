@@ -8,8 +8,10 @@ import MakeRoomPage from "./Page/MakeRoomPage";
 import RoomCodeEnterModal from "./Page/RoomCodeEnterModal";
 import RoomRulePage from "./Page/RoomRulePage";
 import RoomMainPage from "./Page/RoomMainPage";
+import Page11 from "./Page/Page11";
 import Page12 from "./Page/Page12";
 import Page9 from "./Page/Page9";
+import Page10 from "./Page/Page10";
 import RefundShow from "./Page/RefundShowPage";
 import Ranking from "./Page/RankingPage";
 
@@ -39,9 +41,10 @@ const Router = ({ token, setToken }) => {
         path="/myrooms/:room_id"
         element={<RoomMainPage token={token} setToken={setToken} />}
       />
-
-      <Route path="/12" element={<Page12 token={token} setToken={setToken} />} />
       <Route path="/9" element={<Page9 token={token} setToken={setToken} />} />
+      <Route path="/10" element={<Page10 token={token} setToken={setToken} />} />
+      <Route path="/11" element={<Page11 token={token} setToken={setToken} />} />
+      <Route path="/12" element={<Page12 token={token} setToken={setToken} />} />
       <Route path="/refund" element={<RefundShow token={token} setToken={setToken} />} />
       <Route path="/rank" element={<Ranking token={token} setToken={setToken} />} />
     </Routes>
