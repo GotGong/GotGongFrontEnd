@@ -14,6 +14,7 @@ const signInAPI = async (userid, password) => {
     localStorage.clear()
     localStorage.setItem('token',token);
     localStorage.setItem('username',username);
+    localStorage.setItem('userid',userid);
   })
   .catch(function (error) {
     console.log(error);

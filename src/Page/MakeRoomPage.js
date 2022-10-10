@@ -84,43 +84,43 @@ function MakeRoomPage() {
               console.log(error);
               console.log('makeroom에러?');
           });
-  }
+    }
 
-  const titleHandler = (e) => {
-    setTitle(e.target.value);
-  };
+    const titleHandler = (e) => {
+        setTitle(e.target.value);
+    };
 
-  const maxUserNumHandler = (e) => {
-    let people = 0;
-    people = e.target.value;
-    setMaxUserNum(people);
-  };
+    const maxUserNumHandler = (e) => {
+        let people = 0;
+        people = e.target.value;
+        setMaxUserNum(people);
+    };
 
-  const step0 = document.querySelector("#step0");
-  const step1 = document.querySelector("#step1");
-  const step2 = document.querySelector("#step2");
-  const step3 = document.querySelector("#step3");
+    const step0 = document.querySelector("#step0");
+    const step1 = document.querySelector("#step1");
+    const step2 = document.querySelector("#step2");
+    const step3 = document.querySelector("#step3");
 
-  let [step, setStep] = useState(0);
+    let [step, setStep] = useState(0);
 
-  function goStep1() {
-    setStep((step = 1));
-    setEntryfee((entryfee = 20000));
-    step0.style.display = "none";
-    step1.style.display = "block";
-  }
+    function goStep1() {
+        setStep((step = 1));
+        setEntryfee((entryfee = 20000));
+        step0.style.display = "none";
+        step1.style.display = "block";
+    }
 
-  function goStep2() {
-    setStep((step = 2));
-    step1.style.display = "none";
-    step2.style.display = "block";
-  }
+    function goStep2() {
+        setStep((step = 2));
+        step1.style.display = "none";
+        step2.style.display = "block";
+    }
 
-  function goStep3() {
-    setStep((step = 3));
-    step2.style.display = "none";
-    step3.style.display = "block";
-  }
+    function goStep3() {
+        setStep((step = 3));
+        step2.style.display = "none";
+        step3.style.display = "block";
+    }
 
   // let endpoint = 4;
 

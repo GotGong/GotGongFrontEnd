@@ -120,9 +120,9 @@ function RoomHomePage() {
           )}
         </div>
         <div className="showRoomList">
-        {
-          rooms
-        }
+          {
+            rooms
+          }
         </div>
       </div>
     </div>

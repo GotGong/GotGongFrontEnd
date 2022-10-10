@@ -76,7 +76,6 @@ export default function Page12 () { // token, room_id는 Props로 받아온다�
 
     return (
         <>
-        <NavBar2 />
         <div id="Page12-container">
             <div/>
 

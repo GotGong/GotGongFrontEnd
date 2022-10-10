@@ -297,14 +297,16 @@ import { useParams, Link } from "react-router-dom";
              </div>
 
              <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', justifyItems:'center', alignItems:'center'}}>
-               <Link to="/9">
+               <Link to="/12">
                <button style={{borderRadius:'22px',backgroundColor:'black',color:'white', fontSize:'18px', height:'70px', width: '280px'}}>
                  새 계획 작성하기
                </button>
                </Link>
+               <Link to="/11">
                <button style={{borderRadius:'22px',backgroundColor:'black',color:'white', fontSize:'18px', height:'70px', width: '280px'}}>
                  새 수행 작성하기
                </button>
+               </Link>
              </div>
            </div>
 
