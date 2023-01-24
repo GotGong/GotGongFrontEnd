@@ -1,6 +1,13 @@
 # GotGongFrontEnd
 같공(같이 공부할래?) FrontEnd 서버입니다
 
+###UI 
+<img width="747" alt="스크린샷 2023-01-24 13 07 24" src="https://user-images.githubusercontent.com/72147667/214210585-4049aa31-2910-4566-97e5-cb3a292c5469.png">
+<img width="747" alt="스크린샷 2023-01-24 13 07 30" src="https://user-images.githubusercontent.com/72147667/214210627-a5ee461f-3839-4d90-9976-01d1ea0384e9.png">
+<img width="760" alt="스크린샷 2023-01-24 13 07 46" src="https://user-images.githubusercontent.com/72147667/214210648-247c8472-c1e2-45f3-be80-29e9fbf4f9fa.png">
+<img width="761" alt="스크린샷 2023-01-24 13 07 55" src="https://user-images.githubusercontent.com/72147667/214210664-aba947f5-407f-4e21-8c30-e68611cf9feb.png">
+<img width="758" alt="스크린샷 2023-01-24 13 08 07" src="https://user-images.githubusercontent.com/72147667/214210678-663a6c70-ce03-493f-9180-e22e99c04079.png">
+
 ### 초기 세팅
 ```
 yarn add axios // axios 설치
